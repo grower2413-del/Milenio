@@ -1208,127 +1208,129 @@ https://dl.dropboxusercontent.com/scl/fi/wgl5dx69cn31uwfuig61w/VALLENATO-CRISTIA
 # ==========================================
 # SECCIÓN: Peliculas (películas variables)
 # ==========================================
-#EXTINF:-1 group-title="🎬 PELÍCULAS",======== 🎬 PELÍCULAS DISPONIBLES 🎬 ========
+#EXTM3U name="Películas Variables"
+m3u id="w1139a"
+#EXTM3U name="Películas Variables" type="playlist" dlna_extras="true"
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Carretera Mortal (2018)
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Carretera Mortal (2018)
 https://www.dropbox.com/scl/fi/c3i9xda0ntp69ooa8zzu6/Carretera.Mortal.2018.1080P-Dual-Lat.mkv?rlkey=jwcuuyl5i61bzd72xqys1s9q1&st=745di1jm&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Entre Padres e Hijos (2026)
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Entre Padres e Hijos (2026)
 https://www.dropbox.com/scl/fi/88cm3o3iyfnn13vfvqqdv/Entre.Padres.E.Hijos.2026.1080P-Dual-Lat.mkv?rlkey=wyi5yp2y8xtf7x18hkm6docpm&st=rbuc8ttq&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Video Personal 2026
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Video Personal 2026
 https://www.dropbox.com/scl/fi/0jogp7h5mj8gkwub7case/VID_20260401_092444_752.mp4.mkv?rlkey=gjnmw6mn6zr6ct4d4ff9u8t1u&st=grae37lg&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Jet Li Acción
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Jet Li Acción
 https://www.dropbox.com/scl/fi/q7q98wmq5r4w3c2uu3npo/JET-LI-se-infiltr-en-una-peligrosa-banda-para-destruirla-desde-dentro-Pel-cula-de-Acci-n-1080P_HD.mp4?rlkey=60x080kn52u0tihr3y060zsod&st=sppy9pu9&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",John Carter (2012)
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",John Carter (2012)
 https://www.dropbox.com/scl/fi/0sxbo5rz0h3lc9ervhmis/John-Carter-2012.mp4?rlkey=jbgxemdu8rq8xu8vclm7b3197&st=79bw60t1&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Jackie Chan - Masacre en el Barrio Chino
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Jackie Chan - Masacre en el Barrio Chino
 https://www.dropbox.com/scl/fi/6b1dm8osvx2g0ottniw6k/LA-PEL-CULA-M-S-BRUTAL-DE-JACKIE-CHAN_-Masacre-en-el-Barrio-Chino_-COMPLETA-Y-DOBLADA-1080P_HD.mp4?rlkey=wuw3fcxzn6a55eeor2lnadr8b&st=w7q6y787&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Goat (2026)
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Goat (2026)
 https://www.dropbox.com/scl/fi/2wtt4v31mdre0pq4eczyd/La.Cabra.Que.Cambi-.El.Juego.-.Goat.2026.1080P-Dual-Lat.mkv?rlkey=v8e4hp2586zyvv42xpg6zvn34&st=izyy00v6&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Película Cristiana Motivacional
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Película Cristiana Motivacional
 https://www.dropbox.com/scl/fi/1dc6kq9yd2yjnc56sx2sn/Una-pel-cula-que-tocar-cada-coraz-n-Dios-siempre-da-fuerzas-a-quienes-l-llama-1080P_HD.mp4?rlkey=wuammsbaxeowpwn0rj3m7x1kv&st=d81io3em&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Jason Statham vs Jet Li
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Jason Statham vs Jet Li
 https://www.dropbox.com/scl/fi/miezjtxp8ia7slkjx980b/JASON-STATHAM-VS-JET-LI-__-Pel-cula-Completa-en-HD-__-MOVIE-NATION-SPANISH-1080P_HD.mp4?rlkey=frs1iv4bpdfpt3a8wamu1cpim&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Megan Fox Acción África
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Megan Fox Acción África
 https://www.dropbox.com/scl/fi/loul04gtoow4a910w4kt3/La-pel-cula-de-acci-n-m-s-emocionante-con-Megan-Fox-en-la-sabana-africana-Pelicula-completa-1080P_HD.mp4?rlkey=2ye7jo0u0tbroarcqx2ulure4&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Jackie Chan Masacre Barrio Chino
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Jackie Chan Masacre Barrio Chino
 https://www.dropbox.com/scl/fi/6b1dm8osvx2g0ottniw6k/LA-PEL-CULA-M-S-BRUTAL-DE-JACKIE-CHAN_-Masacre-en-el-Barrio-Chino_-COMPLETA-Y-DOBLADA-1080P_HD.mp4?rlkey=wuw3fcxzn6a55eeor2lnadr8b&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Chuck Norris Acción
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Chuck Norris Acción
 https://www.dropbox.com/scl/fi/q15odgodc26skohva62n9/Legendary-Movie-by-Chuck-Norris-_-Hollywood-Action-Movie-_-Full-Movie-Action-Movies-1080p-1080P_HD.mp4?rlkey=9mzaq8webeb65xguy337bxwlg&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Lionheart 1990 Van Damme
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Lionheart 1990 Van Damme
 https://www.dropbox.com/scl/fi/tavjxtn8ofm3xsgdj7doc/Lionheart-1990-Jean-Claude-Van-Damme-_-No-mercy.-No-limits.-Only-fists-and-fury.-4K-1080P_HD.mp4?rlkey=hvf6tjusvsjmbotq36erd10ml&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Triple Amenaza 2019
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Triple Amenaza 2019
 https://www.dropbox.com/scl/fi/qmzcekrd8xqnp88yiidvm/Triple-Amenaza-2019-Pel-culas-En-Espa-ol-1080P_HD.mp4?rlkey=jjrap8gigq7qd8f0u84ptvr0d&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",El Aguijón del Desierto
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",El Aguijón del Desierto
 https://www.dropbox.com/scl/fi/yhiiheqa7iz6qbfk09r52/ESTA-PEL-CULA-ES-SIMPLEMENTE-MARAVILLOSA_-QUE-PIENSAS-DE-EL_-EL-AGUIJ-N-DEL-DESIERTO-1080P_60FPS.mp4?rlkey=gtw3zyad3m3o3lixjixoqjbc9&dl=1
 
-#EXTINF:-1 tvg-logo="" group-title="🎬 Películas",Tarzán Animada
+#EXTINF:-1 tvg-logo="" group-title="🎬 Películas Variables",Tarzán Animada
 https://www.dropbox.com/scl/fi/8jq4uw5t9s76jihjiawhu/Mejor-Pel-cula-Animada-de-Aventura-_-Tarzan-_-Peliculas-Completas-en-Espa-ol-Latino-1080P_HD.mp4?rlkey=t0t3a0whl4npi7dyr6wq7lv8n&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/7mgtje7v899ul84wqd63m/IP_Man_-1.png?rlkey=vi1wie3p9ejldr6w1tc3lc8ag&dl=1"" group-title="🎬 Películas",IP Man 1
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/7mgtje7v899ul84wqd63m/IP_Man_-1.png?rlkey=vi1wie3p9ejldr6w1tc3lc8ag&dl=1"" group-title="🎬 Películas Variables",IP Man 1
 https://www.dropbox.com/scl/fi/cx8vld4drtn9m6sd86ys3/IP_MAN.mp4?rlkey=ot4s978rsk4bcvar7s90yof83&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/voxlmh6wwi69bs7xx879h/IP_Man_-2.png?rlkey=eluwo4rectkhfc2vmytkskubm&dl=1"" group-title="🎬 Películas",IP Man 2
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/voxlmh6wwi69bs7xx879h/IP_Man_-2.png?rlkey=eluwo4rectkhfc2vmytkskubm&dl=1"" group-title="🎬 Películas Variables",IP Man 2
 https://www.dropbox.com/scl/fi/xc19r67egbo7m1kvifunl/ip_man_-2.mp4?rlkey=f2dikhlqwhgth7i1cwur9wiwt&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/dtig480u9sbjc3eat3vxc/IP_Man_-3.png?rlkey=gaz410em7j07elasclh1dgdxh&dl=1"" group-title="🎬 Películas",IP Man 3
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/dtig480u9sbjc3eat3vxc/IP_Man_-3.png?rlkey=gaz410em7j07elasclh1dgdxh&dl=1"" group-title="🎬 Películas Variables",IP Man 3
 https://www.dropbox.com/scl/fi/nnjb3yqw1rsetbxbhvxs7/IP_man_-3.mp4?rlkey=t9dsam23w0dtrsp99lui0hjmk&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lum3r80v3ki764b6w06f6/IP_Man_-4.png?rlkey=pays9jdj4iajtwpvb9gplvusx&dl=1"" group-title="🎬 Películas",IP Man 4
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lum3r80v3ki764b6w06f6/IP_Man_-4.png?rlkey=pays9jdj4iajtwpvb9gplvusx&dl=1"" group-title="🎬 Películas Variables",IP Man 4
 https://www.dropbox.com/scl/fi/bkt6b96cqyaw5608g95wz/IP_man_-4.mp4?rlkey=llpdwiksmzmo075ncqca3p3t6&dl=1
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/7X8QpZ0hYyWz3U0l9zJw1bG7X8r.jpg"" group-title="🎬 Películas",Ratatoy
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/7X8QpZ0hYyWz3U0l9zJw1bG7X8r.jpg"" group-title="🎬 Películas Variables",Ratatoy
 https://www.dropbox.com/scl/fi/wofo55ja6xn1ohp3qvm0z/ratatoy.mp4?rlkey=tvmnviozl7zcr0bv83knsol2y&dl=1
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/fakehuevosposter.jpg"" group-title="🎬 Películas",Huevos
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/fakehuevosposter.jpg"" group-title="🎬 Películas Variables",Huevos
 https://www.dropbox.com/scl/fi/mt6h26znq706zm0e75t5f/huevos.mp4?rlkey=wilpj2ah3v2uezualz4lkxxe4&dl=1
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol1poster.jpg"" group-title="🎬 Películas",Gol 1
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol1poster.jpg"" group-title="🎬 Películas Variables",Gol 1
 https://www.dropbox.com/scl/fi/sh073ketfjfaamwg1e65p/Gol.mp4?rlkey=hu4mbcjlr9ivgj0x0ucryv8no&dl=1
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol2poster.jpg"" group-title="🎬 Películas",Gol 2
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol2poster.jpg"" group-title="🎬 Películas Variables",Gol 2
 https://www.dropbox.com/scl/fi/ae07um7ccznqljw46tin5/GOL_-2.mp4?rlkey=qmecdhmesqr0wha78b5b9jpfi&dl=1
 
-#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol3poster.jpg"" group-title="🎬 Películas",Gol 3
+#EXTINF:-1 tvg-logo="https://image.tmdb.org/t/p/w500/gol3poster.jpg"" group-title="🎬 Películas Variables",Gol 3
 https://www.dropbox.com/scl/fi/kchi5sp0qwtye2mc2scy5/GOL_-3.mp4?rlkey=j9xrgrjvl7rkaiwmydms03v2o&dl=1
 
-#EXTINF:-1 tvg-id="" tvg-name="La Montaña Embrujada (2009)" tvg-logo="https://www.dropbox.com/scl/fi/8aiyp0hkzaq40fix3h1az/monta-a-embrujada.png?rlkey=34iteami0l2yuqm69ur5e4r1g&st=v24xtil3&dl=1"" group-title="🎬 Películas",content-type="movie",La Montaña Embrujada (2009)
+#EXTINF:-1 tvg-id="" tvg-name="La Montaña Embrujada (2009)" tvg-logo="https://www.dropbox.com/scl/fi/8aiyp0hkzaq40fix3h1az/monta-a-embrujada.png?rlkey=34iteami0l2yuqm69ur5e4r1g&st=v24xtil3&dl=1"" group-title="🎬 Películas Variables",content-type="movie",La Montaña Embrujada (2009)
 https://www.dropbox.com/scl/fi/ssuka43d0uiooe3jh6cw0/La.Monta-a.Embrujada.2009.1080P-Dual-Lat.mp4?rlkey=f77mdvxtz0dlvd2muhhhqc0pg&st=e3x147zl&dl=1
 
 #EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/o97arjjs45xhrns3w39su/1784344958498.png?rlkey=2pg6t0byhmip95jahl29a3iib&st=d49e9omz&dl=1",Alabanzas Cristianas para Niños
 https://www.dropbox.com/scl/fi/ec4fbtfsxd8elwdx2w9sx/Alabanzas-Cristianas-para-Ni-os-sin-Pausa-1h10m-de-Coritos-que-Har-n-Gozar-720P_HD.mp4?rlkey=kkz6evoturk0bgxtvv6krhags&st=5yxm2d6a&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lurk9egggnzqbt8dwhnop/1784482312361.png?rlkey=asojgvp3kwxwhf0b6uwenjkc5&st=pwvqxj6w&dl=1"" group-title="🎬 Películas",Isla Larva: La Película
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lurk9egggnzqbt8dwhnop/1784482312361.png?rlkey=asojgvp3kwxwhf0b6uwenjkc5&st=pwvqxj6w&dl=1"" group-title="🎬 Películas Variables",Isla Larva: La Película
 https://www.dropbox.com/scl/fi/vgc0avqb2pmu60nthwgc0/Isla-Larva-La-pel-cula-720p-DUAL-1.72-GB.mkv?rlkey=u8mq8hipr2v2bfh0f5wfp37uo&st=oxdrmto8&dl=1
 
-#EXTINF:-1 tvg-id="musica_bendicion" tvg-name="Música de Bendición" tvg-logo="https://www.dropbox.com/scl/fi/09lisjfz1e2u3ivxnhzzp/1784169926119.png?rlkey=6hj062kfw1qaj8g9605t280np&st=up10zibu&dl=1" group-title="Cristianos",Música de Bendición
+#EXTINF:-1 tvg-id="musica_bendicion" tvg-name="Música de Bendición" tvg-logo="https://www.dropbox.com/scl/fi/09lisjfz1e2u3ivxnhzzp/1784169926119.png?rlkey=6hj062kfw1qaj8g9605t280np&st=up10zibu&dl=1" group-title="🎬 Películas Variables",Música de Bendición
 https://www.dropbox.com/scl/fi/1fszg47126v151rdt5odt/MUSICA-DE-BENDICION.mp4?rlkey=8em67h27xh3y8g18x99jykp4j&st=fkmd4n0r&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/fqrk953cpq9uc8ts6rhrl/aventura.png?rlkey=jxljleerigij98q00xyfc1pap&st=d2rnx9tl&dl=1"" group-title="🎬 Películas",Ace Ventura: Detective De Mascota (1994)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/fqrk953cpq9uc8ts6rhrl/aventura.png?rlkey=jxljleerigij98q00xyfc1pap&st=d2rnx9tl&dl=1"" group-title="🎬 Películas Variables",Ace Ventura: Detective De Mascota (1994)
 https://www.dropbox.com/scl/fi/3bzt4hbrpveczxipoq67g/Ace.Ventura.1.Detective.De.Mascota%20Luus.1994.1080P-Dual-Lat.mp4?rlkey=lrywtro26t3nwll8e5t6onmyd&st=zq19gz5l&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/nbudknv69phoncd29jn3f/desahusido.png?rlkey=8lzpj18o4sz8g6ptrc3dfrzpq&st=3wtf4e10&dl=1"" group-title="🎬 Películas",El Club De Los Desahuciados (2013)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/nbudknv69phoncd29jn3f/desahusido.png?rlkey=8lzpj18o4sz8g6ptrc3dfrzpq&st=3wtf4e10&dl=1"" group-title="🎬 Películas Variables",El Club De Los Desahuciados (2013)
 https://www.dropbox.com/scl/fi/r2vcx8djldtkhvivcqgpr/El.Club.De.Los.Desahuciados.2013.1080P-Dual-Lat.mkv?rlkey=d02b88v8tvz4ptbxn9jyc98wb&st=vu43eozm&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lhm6gurjuds4n43t22qs3/truman.png?rlkey=tnlb9vg32y9boh8rotqksbsc1&st=u3fcafjt&dl=1"" group-title="🎬 Películas",El Show De Truman (1998)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/lhm6gurjuds4n43t22qs3/truman.png?rlkey=tnlb9vg32y9boh8rotqksbsc1&st=u3fcafjt&dl=1"" group-title="🎬 Películas Variables",El Show De Truman (1998)
 https://www.dropbox.com/scl/fi/qsy4saxwxn9gbcfl1v4xw/Elshowdetruman.1998.1080P-Dual-Lat.mp4?rlkey=km7pb5buov8ph2m8qnaotkmit&st=aoc2mnrh&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/6b44nda8n5p8wib6jpr4h/familia.png?rlkey=gi52hng9myx4svs3hdwd8cals&st=n72q0ay5&dl=1"" group-title="🎬 Películas",Family Switch (2023)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/6b44nda8n5p8wib6jpr4h/familia.png?rlkey=gi52hng9myx4svs3hdwd8cals&st=n72q0ay5&dl=1"" group-title="🎬 Películas Variables",Family Switch (2023)
 https://www.dropbox.com/scl/fi/pbnxr2u32157e4e59en6y/Family.switch.2023.1080P-Dual-Lat.mp4?rlkey=9jykjuy91y5nyl7clw957jqvq&st=yngcg3gm&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/y0j86j906rcfefl47wtcy/yo_y_mi_otro_yo.png?rlkey=x5wafjibhtdoobikritx660m2&st=lc1k5hah&dl=1"" group-title="🎬 Películas",Irene, Yo Y Mi Otro Yo (2000)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/y0j86j906rcfefl47wtcy/yo_y_mi_otro_yo.png?rlkey=x5wafjibhtdoobikritx660m2&st=lc1k5hah&dl=1"" group-title="🎬 Películas Variables",Irene, Yo Y Mi Otro Yo (2000)
 https://www.dropbox.com/scl/fi/stzw57xi3uuoq34gac5wk/Irene.Yo.Y.Mi.Otro.Yo.2000.1080P-Dual-Lat.mkv?rlkey=jn9b4jq6dpyzer00xa63cp6sf&st=oag4e1ja&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/5suf84f5r48fd2ad7qr1g/la_mascara.png?rlkey=52vm4yb5f4qcyjq2ofna66y6i&st=9vx4pe4t&dl=1"" group-title="🎬 Películas",La Máscara (1994)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/5suf84f5r48fd2ad7qr1g/la_mascara.png?rlkey=52vm4yb5f4qcyjq2ofna66y6i&st=9vx4pe4t&dl=1"" group-title="🎬 Películas Variables",La Máscara (1994)
 https://www.dropbox.com/scl/fi/9w69q0l1q321lxs1qxbie/La.M-scara.1994.1080P-Dual-Lat.mkv?rlkey=grzlxdyesxk0ao7w71erncptf&st=32tsr4du&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/j9jit183mla178w8a5cg3/dick_jane.png?rlkey=18mw5v0rmcw6rlthbz5crmvzi&st=7ic41m8x&dl=1"" group-title="🎬 Películas",Las Locuras De Dick Y Jane (2005)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/j9jit183mla178w8a5cg3/dick_jane.png?rlkey=18mw5v0rmcw6rlthbz5crmvzi&st=7ic41m8x&dl=1"" group-title="🎬 Películas Variables",Las Locuras De Dick Y Jane (2005)
 https://www.dropbox.com/scl/fi/d69vh01yo2yt9s28vuujg/Las.Locuras.De.Dick.Y.Jane.2005.1080P-Dual-Lat.mp4?rlkey=t7yeofirz4bb4x5dw4yxv8cpp&st=fqhjft66&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/5crfxy4uzj6w02c716w6a/mentiroso.png?rlkey=65bgvg8z711gzbqpepyx076dw&st=b2hoim2a&dl=1"" group-title="🎬 Películas",Mentiroso Mentiroso (1997)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/5crfxy4uzj6w02c716w6a/mentiroso.png?rlkey=65bgvg8z711gzbqpepyx076dw&st=b2hoim2a&dl=1"" group-title="🎬 Películas Variables",Mentiroso Mentiroso (1997)
 https://www.dropbox.com/scl/fi/k6amqgaf2612ebqbj8w4o/Mentiroso.Mentiroso.1997.1080P-Dual-Lat.mkv?rlkey=r62vushak5jzfb9841xse2rzn&st=3ljngybf&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/r31ncfb57yz09ybiql4l7/si_se-or.png?rlkey=ur31ud7p4muqetxuqo3yxdk9h&st=kohicrvp&dl=1"" group-title="🎬 Películas",Sí, Señor (2008)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/r31ncfb57yz09ybiql4l7/si_se-or.png?rlkey=ur31ud7p4muqetxuqo3yxdk9h&st=kohicrvp&dl=1"" group-title="🎬 Películas Variables",Sí, Señor (2008)
 https://www.dropbox.com/scl/fi/tg4u0bh6tkhxbzr0rpngd/S-.Se-or.2008.1080P-Dual-Lat.mkv?rlkey=9m9jof98sh9qxrqdnzeqdrdur&st=868jgcdd&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/bwaes1wvesaon6frspi63/Sonic_2.png?rlkey=8pga5c2jz0zqnqd2i1atc51wq&st=i8a63foj&dl=1"" group-title="🎬 Películas",Sonic 2 La Película (2022)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/bwaes1wvesaon6frspi63/Sonic_2.png?rlkey=8pga5c2jz0zqnqd2i1atc51wq&st=i8a63foj&dl=1"" group-title="🎬 Películas Variables",Sonic 2 La Película (2022)
 https://www.dropbox.com/scl/fi/gfn003c40f91u1hp60txm/Sonic.2.La.Pel-cula.2022.1080P-Dual-Lat.mp4?rlkey=fio949yyyyly0gna07g4ldxpu&st=5q3wyxgp&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/7ef868wab6syg9xlxx4ly/Sonic_1.png?rlkey=usa7tdy5j8erbkgaewvlffra0&st=jq06t4o8&dl=1"" group-title="🎬 Películas",Sonic The Hedgehog (2020)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/7ef868wab6syg9xlxx4ly/Sonic_1.png?rlkey=usa7tdy5j8erbkgaewvlffra0&st=jq06t4o8&dl=1"" group-title="🎬 Películas Variables",Sonic The Hedgehog (2020)
 https://www.dropbox.com/scl/fi/wno0qnrsqpkny6fzkitbv/Sonic.The.Hedgehog.2020.1080P-Dual-Lat.mp4?rlkey=vqie3uen81qekcw8q8i1iqoff&st=3lkzoycs&dl=1
 
-#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/f2b5tx8ofperdx10k927k/todopoderoso.png?rlkey=rrpp2wrs8o14rqvunxixmrg7t&st=lthfsys8&dl=1"" group-title="🎬 Películas",Todopoderoso (2003)
+#EXTINF:-1 tvg-logo="https://www.dropbox.com/scl/fi/f2b5tx8ofperdx10k927k/todopoderoso.png?rlkey=rrpp2wrs8o14rqvunxixmrg7t&st=lthfsys8&dl=1"" group-title="🎬 Películas Variables",Todopoderoso (2003)
 https://www.dropbox.com/scl/fi/558xlin9hro72h78sgr2d/Todopoderoso.2003.1080P-Dual-Lat.mp4?rlkey=w8q21jb7ubwdmwjmhtjepbvpd&st=ik5odrf2&dl=1
