@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grizzy TV+ Vol. 1 - GLYSTV+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #ff7b00; --bg: #0a0a0a; --card: #1a1a1a; --text: #fff; --accent-yellow: #f5c518; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; text-align: center; }
+        
+        .video-box { position: sticky; top: 0; background: #000; z-index: 1000; border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
+        #video-container { width: 100%; max-width: 800px; margin: 0 auto; background: #000; }
+        video { width: 100%; aspect-ratio: 16/9; display: block; }
+        
+        .current-title { padding: 10px; color: var(--accent-yellow); font-size: 14px; font-weight: bold; }
+        .btn-atras { background: #e50914; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 10px; font-weight: bold; font-size: 13px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 20px; max-width: 1400px; margin: 0 auto; }
+        .card { background: var(--card); border-radius: 12px; border: 2px solid #222; overflow: hidden; cursor: pointer; transition: 0.25s; display: flex; flex-direction: column; }
+        .card:active { transform: scale(0.95); border-color: var(--primary); }
+        .card-icon { height: 80px; display: flex; align-items: center; justify-content: center; background: #222; font-size: 35px; color: var(--primary); }
+        .card-info { padding: 10px; text-align: center; }
+        .card-title { font-size: 11px; font-weight: 600; color: #eee; }
+    </style>
+</head>
+<body>
+
+<div class="video-box">
+    <div id="video-container"></div>
+    <div id="displayTitle" class="current-title">Toca un episodio para iniciar</div>
+    <a href="index.html" class="btn-atras">⬅ VOLVER</a>
+</div>
+
+<div class="grid" id="gallery"></div>
+
+<script>
+    const videos = [
+        { t: "Interplanetary Cabin", u: "https://www.dropbox.com/scl/fi/23v7wvah1g8zapz9yn3a0/Interplanetary-Cabin-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=qot9gth2ay2v8ssv92r2zxh0x&raw=1", i: "fa-rocket" },
+        { t: "His Majesty Service", u: "https://www.dropbox.com/scl/fi/lyvq9rozpuai8xkewhwu8/In-the-Service-of-His-Majesty-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=x0wqsih1cjxtp01dnvexi4dak&raw=1", i: "fa-crown" },
+        { t: "Iced Grizzy", u: "https://www.dropbox.com/scl/fi/85z7nddthomn2vl7y1kgx/Iced-Grizzy-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=usyu1l0i5bli8zimzazsip0xx&raw=1", i: "fa-snowflake" },
+        { t: "Hide-n-Seek", u: "https://www.dropbox.com/scl/fi/r90yrwbozagc0jbk71dfj/Hide-n-Seek-Lemmings-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=xilbcxhcbv3qdl4ciz35hws35&raw=1", i: "fa-eye-slash" },
+        { t: "Grizzy Odyssey", u: "https://www.dropbox.com/scl/fi/ryeyhvfpy8ekprzfg9kwi/Grizzy_s-Odyssey-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=1m3iqetceuwuguaxgcqpv1x6s&raw=1", i: "fa-compass" },
+        { t: "Grizzy Academy", u: "https://www.dropbox.com/scl/fi/o2t1dfkk14ykso214otuq/Grizzy-Academy-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=tlamn3j2dh8j59mrwe4w35l0g&raw=1", i: "fa-school" },
+        { t: "Tennis Shoes", u: "https://www.dropbox.com/scl/fi/ca9bqtru7nsnr9p97pima/Get-Off-My-Tennis-Shoes-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=p09azneui74dsk67kqrcakf7a&raw=1", i: "fa-shoe-prints" },
+        { t: "Game of Marbles", u: "https://www.dropbox.com/scl/fi/xva8eq2jnb6xw1dvanks8/Game-of-Marbles-_-Grizzy-_-the-lemmings-S04E30-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=r824knl2nmrd215fvu1gqfsfp&raw=1", i: "fa-bowling-ball" },
+        { t: "Great Wall Disco", u: "https://www.dropbox.com/scl/fi/r66dn9rfk61qp58qo8dnh/Great-Wall-Disco-Grizzy-_-the-lemmings-Clip-Cartoon-for-Kids-720P_HD.mp4?rlkey=1w0zfdeeqhvkyrg074y6kj3h0&raw=1", i: "fa-compact-disc" },
+        { t: "For Real", u: "https://www.dropbox.com/scl/fi/n9vjjtcg4wibxkx9srb90/For-Real-_-Grizzy-_-the-lemmings-Clip_-Cartoon-for-Kids-720P_HD.mp4?rlkey=8eo27uzo3rnf5ml1ic241mbuq&raw=1", i: "fa-check-circle" },
+        { t: "Flying Sands", u: "https://www.dropbox.com/scl/fi/fy6f4vnw6gxenjk20rnv0/Flying-Sands-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=250nkd79qzs2t7lwcjfrvd0ds&raw=1", i: "fa-wind" },
+        { t: "Firefly Party", u: "https://www.dropbox.com/scl/fi/f65e8qinhroakgux6ze4l/Firefly-Party-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=iz1ykt3pek7ep61lc1tuf17eg&raw=1", i: "fa-lightbulb" },
+        { t: "Fake Brother", u: "https://www.dropbox.com/scl/fi/0qe2096g8bquxit78y56a/Fake-Brother-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=clq0bifqqimyrccmpt5786gn8&raw=1", i: "fa-user-friends" },
+        { t: "Every Which Way", u: "https://www.dropbox.com/scl/fi/zbd8ct8lsi0nfh7g6zh4q/Every-Which-Way-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=b2g40lmnya7ow2bfg0471z0qw&raw=1", i: "fa-random" },
+        { t: "Social Distance", u: "https://www.dropbox.com/scl/fi/dzssbgaw6f2duewckjcaj/Even-Grizzy-_-the-Lemmings-social-distance-and-apply-protective-measures-Grizzy-_-the-Lemmings-720P_HD.mp4?rlkey=dqdjj6fudkmbomnuep6rjsjtz&raw=1", i: "fa-shield-virus" },
+        { t: "Eating Lemmings?", u: "https://www.dropbox.com/scl/fi/ajcdj1w7k5zcnl1xoedt8/Eating-Lemmings__-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=847rul63ptfkfjdoc1qwaauch&raw=1", i: "fa-utensils" },
+        { t: "Drawer Puzzles", u: "https://www.dropbox.com/scl/fi/ie05t6iio40dzm4dj6rfu/Drawer-Puzzles-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=4886hk3n5q4pztfcbu95psb3m&raw=1", i: "fa-puzzle-piece" },
+        { t: "Diabolical Labyrinth", u: "https://www.dropbox.com/scl/fi/bj49maxr4b6pc2xqiztg5/Diabolical-Labyrinth-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=nl9xmge3v7lts3jjgzro37uj8&raw=1", i: "fa-dungeon" },
+        { t: "Crab Crush", u: "https://www.dropbox.com/scl/fi/400s6e4vbzbtv3b2r870b/Crab-Crush-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=8e8ykoral5v28azj5if2u0wtt&raw=1", i: "fa-hand-rock" },
+        { t: "Crab Basket", u: "https://www.dropbox.com/scl/fi/bldpeqxjshowimcsagell/Crab-Basket-_-Grizzy-_-the-lemmings-S04E35-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=hzyn69nfo0qmjqpq6u0rn5e1g&raw=1", i: "fa-shopping-basket" },
+        { t: "Cocoa Tree Spread", u: "https://www.dropbox.com/scl/fi/7dm3umlnapfvck7vb428x/Cocoa-Tree-Spread-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=qjg8brahhq79o8oe46pb71cs2&raw=1", i: "fa-cookie" },
+        { t: "Cartoon Bear", u: "https://www.dropbox.com/scl/fi/ow4z3nkzb5267bnhfrueu/Cartoon-Bear-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=kc8sykv0nnhd79ajchmsc68h0&raw=1", i: "fa-paw" },
+        { t: "Behind the Scenes", u: "https://www.dropbox.com/scl/fi/fwt4229xzkzhfl2qcsizj/BONUS-_-Behind-the-scenes-of-Grizzy-_-The-Lemmings-720P_HD.mp4?rlkey=f0mf8q2g59qf1kjrw7gptqnr7&raw=1", i: "fa-camera" },
+        { t: "Bear Family", u: "https://www.dropbox.com/scl/fi/woxe1w9c82w8omkavt7oj/Bear-Family-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=x1o1lhqsg9yetne&raw=1", i: "fa-users" },
+        { t: "Ready Set Bam", u: "https://www.dropbox.com/scl/fi/6pidxxv3t76r85ir7y0cu/Ready_-Set_-Bam_-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=h68o6vqxhag2j4i27d4kte8i0&raw=1", i: "fa-hammer" },
+        { t: "Lost Object", u: "https://www.dropbox.com/scl/fi/ao9e4kmjpq45anp63zevn/Lost-Object-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=4meymx4gnnfmyqvt81mxmvidn&raw=1", i: "fa-search-minus" },
+        { t: "Keyring Cabin", u: "https://www.dropbox.com/scl/fi/uxnqahrzqq9wyhs2qhpot/Keyring-Cabin-_-Grizzy-_-the-lemmings-Clip-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=kpl6w0tynaac3x58nhcuy77as&raw=1", i: "fa-key" },
+        { t: "Jungle Rhythm", u: "https://www.dropbox.com/scl/fi/mfz89lfrywha6l8z55ve7/Jungle-Rhythm-_-Grizzy-_-the-lemmings-_-Cartoon-for-Kids-720P_HD.mp4?rlkey=geh7f954y8ccx3q0ihost0n3v&raw=1", i: "fa-leaf" }
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const videoContainer = document.getElementById('video-container');
+    const titleDisplay = document.getElementById('displayTitle');
+    let currentIdx = -1;
+
+    function playVideo(index) {
+        currentIdx = index;
+        videoContainer.innerHTML = `<video id="mainPlayer" controls playsinline autoplay><source src="${videos[index].u}" type="video/mp4"></video>`;
+        const player = document.getElementById('mainPlayer');
+        player.onended = () => { if (currentIdx + 1 < videos.length) playVideo(currentIdx + 1); };
+        titleDisplay.innerText = "Reproduciendo: " + videos[index].t;
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    videos.forEach((v, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<div class="card-icon"><i class="fas ${v.i}"></i></div><div class="card-info"><div class="card-title">${v.t}</div></div>`;
+        card.onclick = () => playVideo(i);
+        gallery.appendChild(card);
+    });
+</script>
+</body>
+</html>

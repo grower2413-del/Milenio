@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mr. Bean TV - PRO ULTRA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #8bc34a; 
+            --bg: #050505; 
+            --card-bg: #121212; 
+            --text: #ffffff; 
+            --accent-yellow: #f5c518; 
+            --netflix-red: #e50914;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* HEADER REPRODUCTOR */
+        .video-box { 
+            position: sticky; 
+            top: 0; 
+            background: #000; 
+            z-index: 1000; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .player-wrapper { 
+            position: relative; 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: #000; 
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+        
+        video { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+        /* CONTROLES ESTILO YOUTUBE/NETFLIX */
+        .video-overlay-controls {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 40px; 
+            opacity: 0; 
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 10; 
+        }
+
+        .video-overlay-controls.show { opacity: 1; pointer-events: auto; }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 55px; 
+            height: 55px;
+            border-radius: 50%; 
+            font-size: 20px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer; 
+            transition: all 0.2s ease;
+        }
+
+        .play-btn { 
+            width: 75px; 
+            height: 75px; 
+            font-size: 30px; 
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+        }
+
+        .nav-btn:active { transform: scale(0.9); background: var(--primary); }
+
+        /* INFO & TITULO */
+        .player-info { padding: 15px; background: linear-gradient(to bottom, #111, var(--bg)); text-align: left; }
+        .current-title { 
+            color: var(--accent-yellow); 
+            font-size: 16px; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            display: block;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+        
+        .btn-atras { 
+            background: var(--netflix-red); 
+            color: white; 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 12px; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        /* GRID DE EPISODIOS ESTILO APP REAL */
+        h2 { font-size: 18px; margin: 20px 15px 10px; text-align: left; color: #ccc; }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 15px; 
+            padding: 0 15px 30px; 
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            transition: transform 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .card:hover { transform: translateY(-5px); }
+        .card:active { transform: scale(0.95); }
+
+        /* MINIATURA SIMULADA */
+        .card-thumb {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-thumb i { font-size: 40px; color: rgba(255,255,255,0.1); }
+        
+        .card-thumb::after {
+            content: 'Mr. Bean';
+            position: absolute;
+            bottom: 5px;
+            right: 8px;
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: bold;
+            opacity: 0.6;
+        }
+
+        .card-title { 
+            padding: 10px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #ddd;
+        }
+
+        /* ANIMACIÓN DE CARGA */
+        .playing-now {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: var(--primary);
+            color: #000;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .card.active .playing-now { display: block; }
+        .card.active { border: 2px solid var(--primary); }
+
+    </style>
+</head>
+<body>
+
+<div class="video-box">
+    <div class="player-wrapper" id="playerWrapper">
+        <video id="mainPlayer" playsinline controls>
+            <source src="" type="video/mp4">
+        </video>
+        
+        <div class="video-overlay-controls" id="overlayControls">
+            <button class="nav-btn" onclick="event.stopPropagation(); playPrev()"><i class="fas fa-backward"></i></button>
+            <button class="nav-btn play-btn" id="centralPlayBtn" onclick="event.stopPropagation(); togglePlay()"><i class="fas fa-play"></i></button>
+            <button class="nav-btn" onclick="event.stopPropagation(); playNext()"><i class="fas fa-forward"></i></button>
+        </div>
+    </div>
+
+    <div class="player-info">
+        <span id="displayTitle" class="current-title">LISTO PARA REPRODUCIR</span>
+        <a href="index.html" class="btn-atras"><i class="fas fa-chevron-left"></i> VOLVER AL MENÚ</a>
+    </div>
+</div>
+
+<h2>Episodios de Mr. Bean</h2>
+<div class="grid" id="gallery"></div>
+
+<script>
+    // LISTA DE VIDEOS (IDEM A LA ANTERIOR)
+    const videos = [
+        { t: "La Pizza", u: "https://www.dropbox.com/scl/fi/mdtv8pu9enjn75a1h7ktf/Pizza-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-en-Espa-ol-720P_HD.mp4?rlkey=oqbilx94ed66evt0tw1fxkcb7&raw=1" },
+        { t: "Pez de Colores", u: "https://www.dropbox.com/scl/fi/6fxrox56airsnw2gj38u1/Pez-de-Colores-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-en-Espa-ol-720P_HD.mp4?rlkey=gbmc2v803sdq9i8xanu9bau60&raw=1" },
+        { t: "Busca a Teddy", u: "https://www.dropbox.com/scl/fi/yhpg4mqqqy9spf48ian66/Mr.-Bean-Busca-A-Teddy-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=5p7vkzzgwenkrf2j3b8e51ws0&raw=1" },
+        { t: "La Enfermera", u: "https://www.dropbox.com/scl/fi/srnav17tqnt3i14xf2mp7/Mr-Bean-y-la-enfermera-_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=2z2t7os4xxpd5rdynpqxtsh4d&raw=1" },
+        { t: "Buceo", u: "https://www.dropbox.com/scl/fi/za2ls50mbsy9zbsyvil8q/Mr-Bean-va-a-bucear-_-Mr-Bean-_-Wildbrain-Ni-os-_-720P_HD.mp4?rlkey=2ipa93dugj0x1pny43extlbiv&raw=1" },
+        { t: "Maestro de Escuela", u: "https://www.dropbox.com/scl/fi/34ty8s3wc3w438zha95kw/Mr-Bean-el-maestro-de-escuela_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=8ecn7esnfzromnhwor1s8wgy4&raw=1" },
+        { t: "Tocar el Piano", u: "https://www.dropbox.com/scl/fi/hv135vh4cj6nywe1w4o1g/Mr-Bean-Aprende-A-Tocar-El-Piano-_-Mr.-Bean-Temporada-1-Episodio-44-720P_HD.mp4?rlkey=yf8ox6z6o7lmch40c1mtmjxbr&raw=1" },
+        { t: "La Pizza Especial", u: "https://www.dropbox.com/scl/fi/8ictsz6rnbbmixbjzraw5/La-Pizza-de-Mr-Bean-_-Mr-Bean-Animado-Mr-Bean-Espanol-720P_HD.mp4?rlkey=org4awsnkldkljsllqycyjq3i&raw=1" },
+        { t: "La Fotografía", u: "https://www.dropbox.com/scl/fi/4mwmniek4evznqllviuex/La-Fotograf-a-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=yjenm3tswc7z08m09ts6gmr2r&raw=1" },
+        { t: "Helado", u: "https://www.dropbox.com/scl/fi/wtq127nucjivo05o86ink/Helado-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Espa-ol-720P_HD.mp4?rlkey=w2nj3l25ny4ey47148cbcj9d1&raw=1" },
+        { t: "Grano de Café", u: "https://www.dropbox.com/scl/fi/wmf1s6ye14f06yzw68ofz/Grano-de-caf-_-Mr.-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=hm5ru15uap86rqsy4obil4m4d&raw=1" },
+        { t: "Entrega Especial", u: "https://www.dropbox.com/scl/fi/x441aypq9mw2jrukwoot7/Entrega-especial_-Sra.-Bean_-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=id35hq9r54x2jbtlcapx9xmnw&raw=1" },
+        { t: "Gran Congelamiento", u: "https://www.dropbox.com/scl/fi/mn8hpxxejcv40c2a3c6qz/El-Gran-Congelamiento-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=z7tuk52sti4rcpq0x2snupmtt&raw=1" },
+        { t: "El Crucero", u: "https://www.dropbox.com/scl/fi/ktqpf6fgma3q79xtcwnky/El-crucero-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-en-Espa-ol-720P_HD.mp4?rlkey=y8wocspde9s2xnz7vh121dboa&raw=1" },
+        { t: "Día Mágico", u: "https://www.dropbox.com/scl/fi/o28yz4cwob9g0tr5mn57w/D-a-M-gico-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=iuwkkkwegf4u9hqc0434epmfq&raw=1" },
+        { t: "Pájaro Misterioso", u: "https://www.dropbox.com/scl/fi/nep7mic2k1bcshk66tlk2/De-D-nde-Sali-Este-P-jaro_-Mr-Bean_-_-Mr.-Bean-Temporada-1-Episodio-46-720P_HD.mp4?rlkey=ym9tte1hc1udbggifj9zeqyir&raw=1" },
+        { t: "Bean Verde", u: "https://www.dropbox.com/scl/fi/eebaqkttz3xbl0mzn4ljs/Se-Vuelve-Verde-De-La-Cabeza-A-Los-Pies_-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=yd08x27y6wcrf6yorxop4udfi&raw=1" },
+        { t: "Rescate de Coche", u: "https://www.dropbox.com/scl/fi/an7ufvop7hcx11hlygvs3/Rescata-Su-Coche-De-Otra-Persona_-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=arm2dz9hv9tw9c9yt24ywi1w9&raw=1" },
+        { t: "Cumpleaños Teddy", u: "https://www.dropbox.com/scl/fi/jg3av19kz0ay1gb0fany4/Mr.-Bean-Olvida-El-Cumplea-os-De-Teddy_-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=cw2jiem28zt4mr3ywx9jhvuxd&raw=1" },
+        { t: "Su Doble", u: "https://www.dropbox.com/scl/fi/lkbyy95yqeq6euxgwjap3/Mr-Bean-Y-Su-Doble_-_-Mr.-Bean-Temporada-1-Episodio-40-720P_HD.mp4?rlkey=pht3ye4po98x3whnglwxdd29&raw=1" },
+        { t: "Galería Espacial", u: "https://www.dropbox.com/scl/fi/x7aawnyyv3l9kjqjafmi7/Mr-Bean-Va-A-La-Galer-a-Espacial_-_-Mr.-Bean-Temporada-1-Episodio-41-720P_HD.mp4?rlkey=f0e6ljza5vxfi6tp0yt45oyij&raw=1" },
+        { t: "Tiene Invitado", u: "https://www.dropbox.com/scl/fi/94rac44x36do311wo81rz/Mr-Bean-Tiene-Un-Invitado_-_-Mr.-Bean-Temporada-1-Episodio-42-720P_HD.mp4?rlkey=j3t8t7jnahu8164y5ca6oq4ep&raw=1" },
+        { t: "Sorpresa Romántica", u: "https://www.dropbox.com/scl/fi/3i2v8wge5bq0vfqffwjuj/Mr-Bean-Prepara-Una-Sorpresa-Rom-ntica_-_-Mr.-Bean-Temporada-1-Episodio-39-720P_HD.mp4?rlkey=7fzov00410341z4rkj8ob57kx&raw=1" },
+        { t: "Maratón", u: "https://www.dropbox.com/scl/fi/w59hb8n8b56ydg9lw88ch/Mr-Bean-Participa-En-La-Marat-n_-_-Mr.-Bean-Temporada-1-Episodio-45-720P_HD.mp4?rlkey=ze5oi991bqwdgzawk8s6fiqdi&raw=1" },
+        { t: "Criador Ranas", u: "https://www.dropbox.com/scl/fi/gmz944p8p13ipp2y8s4e6/Mr-Bean-Criador-De-Ranas_-_-Mr.-Bean-Temporada-1-Episodio-47-720P_HD.mp4?rlkey=957jeqxjb89ns7zn6kxbd4vqn&raw=1" },
+        { t: "Noche Cine", u: "https://www.dropbox.com/scl/fi/i5kas79w0vx24ojixcfgm/La-Noche-De-Cine-Sali-Mal_-_-Mr.-Bean-Temporada-1-Episodio-43-720P_HD.mp4?rlkey=xdxp57vqxh3rep4xh8z8xhxxj&raw=1" },
+        { t: "Cuidador Perros", u: "https://www.dropbox.com/scl/fi/i6r8fthaff2tbwv8yfcow/El-Sr.-Bean-Se-Convirti-En-Cuidador-De-Perros_-_-Mr.-Bean-Temporada-1-Episodio-48-720P_HD.mp4?rlkey=kp7aekkbpea8zde9zhtlzkbv9&raw=1" },
+        { t: "Buscado", u: "https://www.dropbox.com/scl/fi/1cf7q8seumqnpo0o6flvc/Buscado-_-Mr.-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=h562s2f3mm2u926s1g0nzp5qr&raw=1" },
+        { t: "Hospital", u: "https://www.dropbox.com/scl/fi/l5p7wmoasejweh0z7pkhf/The-Hospital-Isn_t-As-Nice-As-It-Seems...-_-Mr-Bean-Animated-Season-1-_-Full-Episodes-_-Mr-Bean-720P_HD.mp4?rlkey=g2cjx56mzeiwrptwzv79u18mt&raw=1" },
+        { t: "Su Gemelo", u: "https://www.dropbox.com/scl/fi/97wrjz4u19h6ygn0emjed/Sr.-Bean-y-su-gemelo_-_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=7grlkjkpnkn222frnbgt8rf96&raw=1" },
+        { t: "Oso Cumpleaños", u: "https://www.dropbox.com/scl/fi/pftg625r6zpz51zd1dkjg/Oso-de-cumplea-os-_-Mr.-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=lx2t8furprhd79n66de6jzeti&raw=1" },
+        { t: "Vecino Ruidoso", u: "https://www.dropbox.com/scl/fi/kr6rdz2sc81u9i5q96uxy/Mr-Bean-y-el-vecino-ruidoso-_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=cp2qsfg33uzvl4oe16wx793k7&raw=1" },
+        { t: "Sin Hogar", u: "https://www.dropbox.com/scl/fi/zfa13sb30t506m02lychi/Mr-Bean-sin-hogar-_-Mr-Bean-Animado-Mr-Bean-Espanol-720P_HD.mp4?rlkey=ogakocs07zyijpb5nli73g4rs&raw=1" },
+        { t: "Colección 2016", u: "https://www.dropbox.com/scl/fi/vutiafqj408l54hk90lnc/Mr-Bean-Cartoon-Full-Episodes-_-2-BEST-COLLECTION-2016-720P_HD.mp4?rlkey=z42mvge5a7llhkqhtu0h9pd2u&raw=1" },
+        { t: "Joven Mr. Bean", u: "https://www.dropbox.com/scl/fi/j67qr9zwykwzijjh90nsn/Joven-Mr-Bean-_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=bv8w8j8eb6z6pseexvkjx7mc3&raw=1" },
+        { t: "Nuevo Juguete", u: "https://www.dropbox.com/scl/fi/4akz7yj0sdzqq1mnsvuog/El-nuevo-juguete-de-Mr-Bean-_-Mr-Bean-Navidad-_-Wildbrain-Ni-os-720P_HD.mp4?rlkey=x4pxosjftoqvzg3jyhz8p263p&raw=1" },
+        { t: "Doble Problema", u: "https://www.dropbox.com/scl/fi/bqg3eq5qgv4akpmi36sct/Doble-problema-_-Mr.-Bean-_-Video-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=b6yvsbc9kxn9p3zrl346358b1&raw=1" },
+        { t: "Cajero", u: "https://www.dropbox.com/scl/fi/rn6lhkf1bsxzvcxjk4yx2/Cajero-autom-tico-_-Mr.-Bean-_-Video-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=7yy02q8dvu7e4panwbwm46ukj&raw=1" },
+        { t: "La Boda", u: "https://www.dropbox.com/scl/fi/9fahwf9k4i2p8x558ztfr/Boda-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=i4gnqvcyir65016hink8iwyb9&raw=1" },
+        { t: "Bean Muscular", u: "https://www.dropbox.com/scl/fi/ydzjs9nbuc7rvqyykqmpg/Bean-Muscular-_-Mr-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=n5eysg35f5fg2j1dr1e4ur57e&raw=1" },
+        { t: "Fan Number One", u: "https://www.dropbox.com/scl/fi/kblf0752nzdgqvossaf66/Bean-Cartoon-Long-Compilation-_328-3-Mister-Bean-Number-One-Fan-in-HD-720P_HD.webm?rlkey=q51o7mihui3tkzpi3jmofbp29&raw=1" },
+        { t: "Agua Frijoles", u: "https://www.dropbox.com/scl/fi/y21bu95revyw511bqk7i7/Agua-de-frijoles-_-Mr.-Bean-_-Dibujos-animados-para-ni-os-_-WildBrain-Ni-os-720P_HD.mp4?rlkey=qfo44ld7g4kmsbdfwkpyrmqsn&raw=1" },
+        { t: "Limpieza", u: "https://www.dropbox.com/scl/fi/5h6n4yrcrl2baul7a0erb/Tiempo-para-una-limpieza_-_-Mr-Bean-Animado-_-Episodios-Completos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=61yq6i8ywby40q5p347s0cy0d&raw=1" },
+        { t: "Hamburguesa", u: "https://www.dropbox.com/scl/fi/q64m14lopebh11lq1pu6b/La-hamburguesa-del-Mr.-Bean_-_-Mr-Bean-Animado-Espa-ol-_-Dibujos-animados-divertidos-_-Viva-Mr-Bean-720P_HD.mp4?rlkey=rnwbpz9dnal0w7b6t3g1fy76x&raw=1" }
+    ];
+
+    const videoPlayer = document.getElementById('mainPlayer');
+    const titleDisplay = document.getElementById('displayTitle');
+    const overlayControls = document.getElementById('overlayControls');
+    const centralPlayBtn = document.getElementById('centralPlayBtn');
+    let currentIdx = -1;
+    let controlsTimer;
+
+    // INICIALIZACIÓN
+    function initGallery() {
+        const gallery = document.getElementById('gallery');
+        videos.forEach((v, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${i}`;
+            card.innerHTML = `
+                <div class="playing-now">REPRODUCIENDO</div>
+                <div class="card-thumb">
+                    <i class="fas fa-laugh-beam"></i>
+                </div>
+                <div class="card-title">${v.t}</div>
+            `;
+            card.onclick = () => playVideo(i);
+            gallery.appendChild(card);
+        });
+    }
+
+    function playVideo(index) {
+        if (index < 0) index = videos.length - 1;
+        if (index >= videos.length) index = 0;
+        
+        // Manejo de clase activa
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        const currentCard = document.getElementById(`card-${index}`);
+        if(currentCard) {
+            currentCard.classList.add('active');
+            currentCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+
+        currentIdx = index;
+        videoPlayer.src = videos[index].u;
+        videoPlayer.play();
+        
+        videoPlayer.onended = () => playNext();
+        centralPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        titleDisplay.innerText = videos[index].t;
+        showControlsTemporarily();
+    }
+
+    function togglePlay() {
+        if (videoPlayer.paused) {
+            videoPlayer.play();
+            centralPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            showControlsTemporarily();
+        } else {
+            videoPlayer.pause();
+            centralPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            showControlsFixed();
+        }
+    }
+
+    function playNext() { playVideo(currentIdx + 1); }
+    function playPrev() { playVideo(currentIdx - 1); }
+
+    function showControlsTemporarily() {
+        clearTimeout(controlsTimer);
+        overlayControls.classList.add('show');
+        if (!videoPlayer.paused) {
+            controlsTimer = setTimeout(() => {
+                overlayControls.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    function showControlsFixed() {
+        clearTimeout(controlsTimer);
+        overlayControls.classList.add('show');
+    }
+
+    // Eventos de usuario
+    videoPlayer.addEventListener('click', (e) => {
+        e.preventDefault();
+        showControlsTemporarily();
+    });
+
+    document.getElementById('playerWrapper').addEventListener('click', (e) => {
+        if (e.target.id === 'playerWrapper' || e.target.id === 'overlayControls') {
+            showControlsTemporarily();
+        }
+    });
+
+    // Iniciar galería al cargar
+    window.onload = initGallery;
+</script>
+</body>
+</html>

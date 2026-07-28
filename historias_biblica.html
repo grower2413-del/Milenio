@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historias Bíblicas - GLYSTV+</title>
+    <style>
+        :root {
+            --netflix-black: #141414;
+            --card-bg: #1f1f1f;
+            --accent-blue: #007bff;
+            --accent-yellow: #f5c518;
+            --text-white: #ffffff;
+        }
+
+        body {
+            background-color: var(--netflix-black);
+            color: var(--text-white);
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Contenedor del reproductor fijo */
+        .video-box {
+            position: sticky;
+            top: 0;
+            background: #000;
+            z-index: 1000;
+            border-bottom: 3px solid var(--accent-blue);
+            min-height: 50px;
+            padding-bottom: 10px;
+        }
+
+        #video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: block;
+        }
+
+        .current-title {
+            padding: 10px;
+            color: var(--accent-yellow);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-atras {
+            background: #e50914;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .lista {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        .item:active { background: #007bff; }
+
+        .num {
+            color: var(--accent-blue);
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .title-text {
+            font-size: 13px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-box">
+        <div id="video-container">
+            <!-- El reproductor se genera dinámicamente aquí -->
+        </div>
+        <div id="displayTitle" class="current-title">Toca una historia bíblica para iniciar</div>
+        <a href="index.html" class="btn-atras">⬅ VOLVER AL MENÚ</a>
+    </div>
+
+    <div class="lista" id="bibliaList"></div>
+
+    <script>
+        const historias = [
+            {t:"15. José y Potifar", u:"https://www.dropbox.com/scl/fi/5f0p44xnhcqdlg8rfeymn/15-jose-y-potifar-14.mp4?rlkey=un40ttug5do3s2jemvjy9ckur&raw=1"},
+            {t:"14. José el Soñador", u:"https://www.dropbox.com/scl/fi/awxauzqoikmcp222lzakv/14-jose-el-so-ador-13.mp4?rlkey=11ujb9ae4zxp8pf8cw01mrdev&raw=1"},
+            {t:"13. Jacob y Labán 2", u:"https://www.dropbox.com/scl/fi/w2km08fk2q5cwhlw76qns/13-jacob-y-laban-11.mp4?rlkey=1vqziif85sl0hpl7kbrehtdqh&raw=1"},
+            {t:"12. Jacob y Labán 1", u:"https://www.dropbox.com/scl/fi/xoojzpwqfbgpe6j0sda6z/12-jaco-y-Lab-n-10.mp4?rlkey=tcoj9wu2x5fe7belpls46xd9q&raw=1"},
+            {t:"10. Jacob y Esaú", u:"https://www.dropbox.com/scl/fi/hyrh5e6m8ndwr48jczb8k/10-jacob-y-esau-9.mp4?rlkey=wfh471ekkuidwus60ewupf0d9&raw=1"},
+            {t:"11. Jacob y la Bendición", u:"https://www.dropbox.com/scl/fi/2dn5tm3z2tya2r3udinq8/11-jacob-y-la-bendici-n-12.mp4?rlkey=s9qsmfh8m94zqx6qbeuxb7too&raw=1"},
+            {t:"9. Isaac y su Amor", u:"https://www.dropbox.com/scl/fi/5ulxb5nuwj20yapnk9kz2/9-ISAAC-Y-SU-AMOR-8.mp4?rlkey=ulmmikl8kl99ho37b2fwf70ej&raw=1"},
+            {t:"8. Isaac", u:"https://www.dropbox.com/scl/fi/pwoo5tcixokv0n5qcq8pz/8-isaac-7.mp4?rlkey=89krlnelh2l53wfpgy1lxayhy&raw=1"},
+            {t:"7. Sodoma y Gomorra", u:"https://www.dropbox.com/scl/fi/a688lgug0r1gsjx5rhfxb/7-sodoma-y-Gomorra-6.mp4?rlkey=6vkfz0zchq3n2zolh1pt9k9y&raw=1"},
+            {t:"6. Abraham", u:"https://www.dropbox.com/scl/fi/zno4txt96htmfv7hs9unj/6-Abraham-5.mp4?rlkey=bizeru6w5yi568rix6faw974o&raw=1"},
+            {t:"5. Torre de Babel", u:"https://www.dropbox.com/scl/fi/98yxom9nxckvjuyqefj20/5-torre-de-babel_1.mp4?rlkey=o65opgbesqhg6u5d7173p9ivd&raw=1"},
+            {t:"4. Noé y el Diluvio", u:"https://www.dropbox.com/scl/fi/schsuaoc1y5hovde0whag/4-noe-y-el-diluvio-4.mp4?rlkey=4378fi743td7ks338c4froyhe&raw=1"},
+            {t:"3. Noé y la Barca", u:"https://www.dropbox.com/scl/fi/zx6sekew3juiuokh27772/3-noe-y-la-barca-3.mp4?rlkey=i99onjkvgg4lt5nesbxwk5ibo&raw=1"},
+            {t:"2. Caín y Abel", u:"https://www.dropbox.com/scl/fi/8rt1gjudhn34t9m7dnvpe/2-caim-y-abel-2.mp4?rlkey=7h6jhkvjprap0cp3xmljb60lf&raw=1"},
+            {t:"1. Adán y Eva", u:"https://www.dropbox.com/scl/fi/1q61u596tf4hlpq9w3yav/1-adan-y-eva-inicio-1.mp4?rlkey=eppm63d5o63rlluafxjfsqqep&raw=1"},
+            {t:"Gabaonitas", u:"https://www.dropbox.com/scl/fi/pqlk2409bsdjf5rjv386w/gabaonitas.mp4?rlkey=cubia7ihg7eiu56noch1ggu22&raw=1"},
+            {t:"Espía de Rahab", u:"https://www.dropbox.com/scl/fi/f8q0yakqmkl4kilz4w7c5/espia-de-raha.mp4?rlkey=inlm63ec2altwvmjca0fs57j6&raw=1"},
+            {t:"El Maná", u:"https://www.dropbox.com/scl/fi/3mn20s8q5ur1nqplf6gla/el-mana.mp4?rlkey=76kirmy4s19yk0jdv994u7spy&raw=1"},
+            {t:"David y Goliat", u:"https://www.dropbox.com/scl/fi/a8dnrhph27nxq4cmnraub/david-y-goliat.mp4?rlkey=kuri8k40yicuuf9ecekfpg10x&raw=1"},
+            {t:"Cinco Reyes", u:"https://www.dropbox.com/scl/fi/ajrc00v1vbbewth6139gv/cinco-reyes.mp4?rlkey=sqj7e3d2y3xlujvgdwkmd3gl8&raw=1"},
+            {t:"Barack y Débora 1", u:"https://www.dropbox.com/scl/fi/r4ra5stbv5fhsrx0tx2ey/barack-y-debora.mp4?rlkey=wejxz4z8uo0s0aw028zxkgl9k&raw=1"},
+            {t:"Barack y Débora 2", u:"https://www.dropbox.com/scl/fi/i6ufahcwr5t6f43aiwedu/barac-y-Deborah.mp4?rlkey=eacia9oenancaxmtplcd4e3dk&raw=1"},
+            {t:"Agua de la Roca", u:"https://www.dropbox.com/scl/fi/75x3ztzewyh2pwks99uij/agua-de-la-roca.mp4?rlkey=anfopp2mkyd0d0yqi53kqdft4&raw=1"},
+            {t:"Zelofehad y sus Hijas", u:"https://www.dropbox.com/scl/fi/cjvw6lyjpkmuj1gr5920o/30-zelofehad-y-las-hijas-22.mp4?rlkey=q3dcdctqt81pwmxsfl2lnwuxm&raw=1"},
+            {t:"Moisés y la Muerte", u:"https://www.dropbox.com/scl/fi/fl5m6inyye2g71n9gs7ou/23-mois-s-y-la-muerte-20.mp4?rlkey=94nxjgq6i5l8a3qhmw13gop4i&raw=1"},
+            {t:"Josué", u:"https://www.dropbox.com/scl/fi/1uqyrdcg7f862ah3gasmt/29-josue-21.mp4?rlkey=ld4ac8qbo2bw75sc5nyfbbdjf&raw=1"},
+            {t:"Miriam y el Castigo", u:"https://www.dropbox.com/scl/fi/vutqcje84d7esqs84guy2/22-miriam-y-el-castig-19.mp4?rlkey=ow5am0hzyltpyi82tn4esfdb9&raw=1"},
+            {t:"Moisés y el Mar Rojo", u:"https://www.dropbox.com/scl/fi/hzjuo67qgrub8uybe0c0s/20-mois-s-contra-el-mar-rojo-17.mp4?rlkey=oj0sifcx5py61snxh70hw41dt&raw=1"},
+            {t:"Los 10 Mandamientos", u:"https://www.dropbox.com/scl/fi/p9gxnxf4gr95c3hlh39n0/21-mois-sy-los-diez-mandamientos-18.mp4?rlkey=a1bydn4dkv1y2jcyhyq2bnda5&raw=1"},
+            {t:"Las 10 Plagas de Egipto", u:"https://www.dropbox.com/scl/fi/n5nqmy0qfecxct5xv9kt7/19-diez-plagas-de-Egipto.mp4?rlkey=6yenvdgoxjk6j264fwiytohyn&raw=1"},
+            {t:"José y sus Hermanos", u:"https://www.dropbox.com/scl/fi/4no9rs2bafvsvrbb45d5w/17-Jos-y-sus-hermanos-15.mp4?rlkey=bk630x9wbaw5gyb0crwprpjhp&raw=1"},
+            {t:"Moisés y la Zarza", u:"https://www.dropbox.com/scl/fi/ipibpxparv2yjrm3juxre/18-mois-s-y-zarza-16.mp4?rlkey=910e8571238o1k0uq41urcn7b&raw=1"},
+            {t:"El Faraón Sueña", u:"https://www.dropbox.com/scl/fi/6d491tit9vjhxe4b66g65/16-fara-n-sue-a.mp4?rlkey=37x1dz4mowgihohzppgikmqip&raw=1"},
+            {t:"Sansón y Dalila", u:"https://www.dropbox.com/scl/fi/ub9o1ozwsm9q71qj6f0br/sans-ny-dalilas-2.mp4?rlkey=syjhq1n2tsg9mdu0mrngo6p39&raw=1"},
+            {t:"Sansón y los Filisteos", u:"https://www.dropbox.com/scl/fi/g2wwqba6gtre6yf61zvhr/sans-n-y-filisteos.mp4?rlkey=quv05fuhsei2hwf1zzfkbwjfl&raw=1"},
+            {t:"Sansón 1", u:"https://www.dropbox.com/scl/fi/w68jfpauz3k4nv1wmvp9q/sans-n-1.mp4?rlkey=nh1p8s9zm6d1i6oka6odi1txf&raw=1"},
+            {t:"Noemí y Rut", u:"https://www.dropbox.com/scl/fi/od6eoiu6r5rhix3s2jplm/noemi-y-rut.mp4?rlkey=s7i4xphjms4f4hbpgt6lc4wch&raw=1"},
+            {t:"Jericó", u:"https://www.dropbox.com/scl/fi/qbi7x8lha4gokntdsuwf0/Jeric.mp4?rlkey=7te5lxbfyk0of1tckn36rf9pc&raw=1"},
+            {t:"Los Jueces", u:"https://www.dropbox.com/scl/fi/bewbyv9o0zbfgkq9c838j/jueces.mp4?rlkey=x08iheql7s7qc1nugun3bxk5y&raw=1"},
+            {t:"Jefté", u:"https://www.dropbox.com/scl/fi/bsj2161tes8nma301oo5b/jefte.mp4?rlkey=jlrx0aqacxqha3dpbis3c76px&raw=1"},
+            {t:"Gedeón", u:"https://www.dropbox.com/scl/fi/upf2qf57qulu5i94ig1m7/jedehon.mp4?rlkey=5qjeyn46tq1gxipl9vo2epxe9&raw=1"},
+            {t:"Israel y su Rebeldía", u:"https://www.dropbox.com/scl/fi/chtr53a9512dlqg2vdu9c/Israel-y-su-rebeld-a.mp4?rlkey=eeo9uk2nzt251yhywft3tcgsi&raw=1"},
+            {t:"Gedeón y los 300", u:"https://www.dropbox.com/scl/fi/45oabo97682ot3jni60gw/gedeon-y-los-300.mp4?rlkey=aav6k8rfuax3qbt5y2mf5k6s6&raw=1"},
+            {t:"Canción: A Belén Yo Voy", u:"https://www.dropbox.com/scl/fi/p46z2absd7y5ck50evy9z/A-BEL-N-YO-VOY-TWICE-PEQUE-OS-H-ROES-Canci-n-Infantil-Cristiana-1080-X-1920.mp4?rlkey=mgichnsfpuby2aldf7xy7amyo&raw=1"},
+            {t:"Especial: 1 Hora de Canciones", u:"https://www.dropbox.com/scl/fi/w1byxbfkqjihmbkn73yae/1-HORA-LAS-CANCIONES-DE-PEQUE-OS-HEROES-720-X-1280.mp4?rlkey=zv3vho19solhhwzjzwbus2mu7&raw=1"},
+            {t:"Especial: Serie Completa Pequeños Héroes", u:"https://www.dropbox.com/scl/fi/0z9s5zsdqwbur9ypecfyf/TODOS-LOS-EPISODIOS-DE-PEQUE-OS-HEROES-La-Serie-Capitulos-completos-Aprende-sobre-la-Biblia-1080-X-1920.mp4?rlkey=gwsj3ozqxb123i148onxb8nsa&raw=1"},
+            {t:"Héroes de la Fe - Canción", u:"https://www.dropbox.com/scl/fi/thbnl5vgualcpthfl0ixe/HEROES-DE-LA-FE-PEQUE-OS-HEROES-Canciones-Infantiles-Cristianas-1080-X-1920.mp4?rlkey=51hecxf2utilmn86vnjs9jed3&raw=1"},
+            {t:"Josué el Conquistador - Canción", u:"https://www.dropbox.com/scl/fi/daod6jhsf52pahzeu7yxq/JOSUE-EL-CONQUISTADOR-PEQUE-OS-HEROES-Canciones-infantiles-cristianas-Generacion-12-Kids-1080-X-1920.mp4?rlkey=98ybsfzt2wq7r0xr1xfigqoff&raw=1"},
+            {t:"Jesús te llama - Canción", u:"https://www.dropbox.com/scl/fi/y3ssuxtsgx95n551ztrng/JESUS-TE-LLAMA-PEQUE-OS-HEROES-Canciones-infantiles-cristianas-1080-X-1920.mp4?rlkey=oydkvdkppisqergcqwzecy81r&raw=1"},
+            {t:"David y Goliat - Canción", u:"https://www.dropbox.com/scl/fi/et9myy4rv1xhvzfxl7d87/Peque-os-H-roes-David-y-Goliat-Canciones-para-Ni-os-1080-X-1920.mp4?rlkey=mm19xlveczrkimnvkmvb3o3hc&raw=1"},
+            {t:"La Armadura - Canción", u:"https://www.dropbox.com/scl/fi/u4h8dtqs8cts50sjijc7c/LA-ARMADURA-PEQUE-OS-HEROES-Cancion-Infantil-Generacion-12-Kids-1080-X-1920.mp4?rlkey=oe4dp6818f5p6pgsx8ex14bgc&raw=1"},
+            {t:"Los Libros de la Biblia - Canción", u:"https://www.dropbox.com/scl/fi/cfb78tn31xsjfrq26zaiz/LOS-LIBROS-DE-LA-BIBLIA-Biblia-para-Ni-os-4K-Canciones-Cristianas-para-Ni-os-1080-X-1920.mp4?rlkey=j4xfcmhm22u21glv42l5uz5se&raw=1"},
+            {t:"Ester - Canción", u:"https://www.dropbox.com/scl/fi/jtwep9w210y0oh119ipft/ESTER-Canciones-Infantiles-Cristianas-PEQUE-OS-HEROES-Generacion-12-Kids-1080-X-1920.mp4?rlkey=ft7jvad21h4po9o9x47g83gxe&raw=1"},
+            {t:"Diez Veces Más - Canción", u:"https://www.dropbox.com/scl/fi/fjgbg1bxz52ctiel763un/DIEZ-VECES-MAS-Daniel-y-los-leones-Cancion-infantil-PEQUE-OS-HEROES-1080-X-1920.mp4?rlkey=ugl9hdo619t3hc4x6446a38qa&raw=1"},
+            {t:"El Guerrero David - Canción", u:"https://www.dropbox.com/scl/fi/iqq0iml7my11ecik4kqs2/EL-GUERRERO-DAVID-PEQUE-OS-HEROES-Cancion-Infantil-720-X-1280.mp4?rlkey=djczbhrewj52w2p0shtv56evn&raw=1"},
+            {t:"Jonás - Canción", u:"https://www.dropbox.com/scl/fi/d7lh0lkmuunji34nyqm52/JONAS-Peque-os-Heroes-Cancion-Cristiana-para-Ni-os-720-X-1280.mp4?rlkey=h2uuv42y3klanprfzf5ozm4m6&raw=1"},
+            {t:"El Arca de Noé - Canción", u:"https://www.dropbox.com/scl/fi/c1fvnatq2ki99jop5kwgx/EL-ARCA-DE-NOE-Para-ni-os-Cancion-Infantil-PEQUE-OS-HEROES-720-X-1280.mp4?rlkey=pawe4fg3vzobim8ag6994m8al&raw=1"},
+            {t:"Padre Abraham - Canción", u:"https://www.dropbox.com/scl/fi/90ljmptztf1kaleec76dk/EL-PADRE-ABRAHAM-Cancion-Infantil-PEQUE-OS-HEROES-Generacion-12-Kids-1080-X-1920.mp4?rlkey=mwi8iauwgp6gxdcn2rh1s9h52&raw=1"},
+            {t:"Mix Adoración 1.5 Horas", u:"https://www.dropbox.com/scl/fi/q70zcnyb9bhlf4waeupvt/1-Hora-y-Media-de-M-sica-Cristiana-para-Orar-y-Adorar-a-Dios-480-X-640.mp4?rlkey=tqke84nvmb5wi0nyaw2bu7amn&raw=1"},
+            {t:"Mix Alabanzas Mix Adoración", u:"https://www.dropbox.com/scl/fi/flyuyk34ovnyrv1h92g85/M-sica-Cristiana-Adoraci-n-y-Alabanzas-Cristianas-Mix-M-sica-de-Adoraci-n-720-X-1280.mp4?rlkey=fnvfry34gdt7ldziidv97lgke&raw=1"},
+            {t:"Mix Adoración Especial", u:"https://www.dropbox.com/scl/fi/q70zcnyb9bhlf4waeupvt/1-Hora-y-Media-de-M-sica-Cristiana-para-Orar-y-Adorar-a-Dios-480-X-640.mp4?rlkey=tqke84nvmb5wi0nyaw2bu7amn&raw=1"},
+            {t:"Alabanzas Inspiradas 2026", u:"https://www.dropbox.com/scl/fi/ef03n5brj6wyww87lw14h/ALABANZAS-INSPIRADAS-LANZAMIENTO-2026-M-SICAS-CRISTIANAS-PARA-SENTIR-LA-PRESENCIA-DE-DIOS-1062-X-1920.mp4?rlkey=em94rn8fhnzckgyas7w2l5b10&raw=1"}
+        ];
+
+        const listContainer = document.getElementById('bibliaList');
+        const videoContainer = document.getElementById('video-container');
+        const titleDisplay = document.getElementById('displayTitle');
+        let currentIdx = -1;
+
+        function playHistoria(index) {
+            currentIdx = index;
+            
+            // Destruye y crea el reproductor para evitar el error del video roto
+            videoContainer.innerHTML = `
+                <video id="mainPlayer" controls playsinline autoplay>
+                    <source src="${historias[index].u}" type="video/mp4">
+                </video>
+            `;
+
+            const player = document.getElementById('mainPlayer');
+            
+            // Al terminar el video, pasar al siguiente automáticamente
+            player.onended = () => {
+                if (currentIdx + 1 < historias.length) playHistoria(currentIdx + 1);
+            };
+
+            titleDisplay.innerText = "Reproduciendo: " + historias[index].t;
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Generar la lista en pantalla
+        historias.forEach((historia, i) => {
+            const item = document.createElement('div');
+            item.className = 'item';
+            item.innerHTML = `<span class="num">${i+1}</span><span class="title-text">${historia.t}</span>`;
+            item.onclick = () => playHistoria(i);
+            listContainer.appendChild(item);
+        });
+    </script>
+</body>
+</html>
