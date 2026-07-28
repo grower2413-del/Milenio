@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grizzy TV+ Vol. 2 - GLYSTV+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #ff8c00; --bg: #080808; --card: #161616; --text: #fff; --accent-yellow: #f5c518; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; text-align: center; }
+        
+        .video-box { position: sticky; top: 0; background: #000; z-index: 1000; border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
+        #video-container { width: 100%; max-width: 800px; margin: 0 auto; background: #000; }
+        video { width: 100%; aspect-ratio: 16/9; display: block; }
+        
+        .current-title { padding: 10px; color: var(--accent-yellow); font-size: 14px; font-weight: bold; }
+        .btn-atras { background: #e50914; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; display: inline-block; margin: 10px; font-weight: bold; font-size: 13px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 20px; max-width: 1400px; margin: 0 auto; }
+        .card { background: var(--card); border-radius: 12px; border: 2px solid #222; overflow: hidden; cursor: pointer; transition: 0.25s; display: flex; flex-direction: column; }
+        .card:active { transform: scale(0.95); border-color: var(--primary); }
+        .card-icon { height: 80px; display: flex; align-items: center; justify-content: center; background: #222; font-size: 35px; color: var(--primary); }
+        .card-info { padding: 10px; text-align: center; }
+        .card-title { font-size: 11px; font-weight: 600; color: #eee; }
+    </style>
+</head>
+<body>
+
+<div class="video-box">
+    <div id="video-container"></div>
+    <div id="displayTitle" class="current-title">Toca un capítulo (Vol. 2) para iniciar</div>
+    <a href="index.html" class="btn-atras">⬅ VOLVER</a>
+</div>
+
+<div class="grid" id="gallery"></div>
+
+<script>
+    const videos = [
+        { t: "Super Voltaic Cabin", u: "https://www.dropbox.com/scl/fi/jd5dqku5lc1n5o3by73q9/Super-Voltaic-Cabin-_-Grizzy-_-the-Lemmings-_-25_-Compilation-_-Cartoon-for-Kids-360P.mp4?rlkey=f3tqmx6jbn6ibqyxosgt2fegp&raw=1", i: "fa-bolt" },
+        { t: "Skull of Discord", u: "https://www.dropbox.com/scl/fi/yupaftj0psr039hadwdtt/Skull-of-Discord-_-Grizzy-_-the-Lemmings-_-25_-Compilation-_-Cartoon-for-Kids-360P.mp4?rlkey=36j9b4c46llx2q7h6pogkrwfe&raw=1", i: "fa-skull" },
+        { t: "Sea Excursion", u: "https://www.dropbox.com/scl/fi/v5u5c323nj6j171ug79ju/Sea-Excursion-_-Grizzy-_-the-Lemmings-_-25_-Compilation-_-Cartoon-for-Kids-360P.mp4?rlkey=ft3dsyh8b7pcdd8d3bpr3imm1&raw=1", i: "fa-ship" },
+        { t: "Odd Job Crab", u: "https://www.dropbox.com/scl/fi/y15373i0cbp0m697qwfw3/Odd-Job-Crab-_-Grizzy-_-the-Lemmings-_-25_-Compilation-_-Cartoon-for-Kids-360P.mp4?rlkey=6my662zi58pvkipuwuvehrdu2&raw=1", i: "fa-hand-peace" },
+        { t: "Javelin Lemmings", u: "https://www.dropbox.com/scl/fi/ysyw5pep1whgt2e94ff4v/Javelin-Lemmings-_-Grizzy-_-the-Lemmings-_-15_-Compilation-_-Cartoon-for-Kids-360P.mp4?rlkey=aqudvtdfe7318ks3y5025yta2&raw=1", i: "fa-ruler-horizontal" },
+        { t: "Cabin on Ice", u: "https://www.dropbox.com/scl/fi/wm4synhxvxjffbrr90xas/Cabin-on-Ice-_-Grizzy-_-the-Lemmings-_-25_-Compilation-_-Cartoon-For-Kids-360P.mp4?rlkey=e6qqgs5tlm1rcdpu8gq5frv4w&raw=1", i: "fa-snowflake" },
+        { t: "Grizzy & Lemmings 20 min - Vol 1", u: "https://www.dropbox.com/scl/fi/8yqlyvgciwyrfrtn3avdb/20-Minutes-of-Grizzy-_-the-Lemmings-Cartoon-Compilation-Full-Episodes-720P_HD.mp4?rlkey=3w3c5e2u0011qorxekie0l7md&raw=1", i: "fa-star" },
+        { t: "Mini Troubles (Ep. 199)", u: "https://www.dropbox.com/scl/fi/sufmz5ufm7nlxtk0c9gh9/Mini-Troubles-Episode-199-Grizzy-_-the-Lemmings-_-Cartoon-720P_HD.mp4?rlkey=4s126fznndzkjmzk2rofoa85l&raw=1", i: "fa-compress-arrows-alt" },
+        { t: "Spinning Lemmings (Ep. 190)", u: "https://www.dropbox.com/scl/fi/3tu62fcvpvc718nr1epdw/Spinning-Lemmings-Episode-190-Grizzy-_-the-Lemmings-_-Cartoon-720P_HD.mp4?rlkey=y52ddolggbgkyv060jhht6n9m&raw=1", i: "fa-redo" }
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const videoContainer = document.getElementById('video-container');
+    const titleDisplay = document.getElementById('displayTitle');
+    let currentIdx = -1;
+
+    function playVideo(index) {
+        currentIdx = index;
+        videoContainer.innerHTML = `<video id="mainPlayer" controls playsinline autoplay><source src="${videos[index].u}" type="video/mp4"></video>`;
+        const player = document.getElementById('mainPlayer');
+        player.onended = () => { if (currentIdx + 1 < videos.length) playVideo(currentIdx + 1); };
+        titleDisplay.innerText = "Reproduciendo: " + videos[index].t;
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    videos.forEach((v, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<div class="card-icon"><i class="fas ${v.i}"></i></div><div class="card-info"><div class="card-title">${v.t}</div></div>`;
+        card.onclick = () => playVideo(i);
+        gallery.appendChild(card);
+    });
+</script>
+</body>
+</html>
