@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GLYSTVpro - Larva</title>
+
+<!-- 1. Librería de Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root { 
+    --primary: #E50914; 
+    --bg: #141414; 
+    --card-bg: #1f1f1f; 
+    --text: #ffffff; 
+    --accent-yellow: #f5c518; 
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+header{
+    background:#000;
+    padding:20px;
+    text-align:center;
+    font-size:32px;
+    font-weight:bold;
+    color:var(--primary);
+    box-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+
+/* HEADER REPRODUCTOR */
+.video-box { 
+    position: sticky; 
+    top: 0; 
+    background: #000; 
+    z-index: 1000; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.player-wrapper { 
+    position: relative; 
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    background: #000; 
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+video { 
+    width: 100%; 
+    height: 100%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+/* CONTROLES ESTILO YOUTUBE/NETFLIX */
+.video-overlay-controls {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 40px; 
+    opacity: 0; 
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 10; 
+}
+
+.video-overlay-controls.show { opacity: 1; pointer-events: auto; }
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 55px; 
+    height: 55px;
+    border-radius: 50%; 
+    font-size: 20px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    transition: all 0.2s ease;
+}
+
+.play-btn { 
+    width: 75px; 
+    height: 75px; 
+    font-size: 30px; 
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
+}
+
+.nav-btn:active { transform: scale(0.9); background: var(--primary); }
+
+/* INFO & TITULO */
+.player-info { padding: 15px; background: linear-gradient(to bottom, #111, var(--bg)); text-align: left; }
+.current-title { 
+    color: var(--accent-yellow); 
+    font-size: 16px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    display: block;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+}
+
+.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    background: var(--primary);
+    margin: 0;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.back-link:hover{
+    background:#b20710;
+}
+
+h2{
+    font-size: 18px; 
+    margin: 20px 15px 10px; 
+    text-align: left; 
+    color: #ccc;
+}
+
+.grid-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:15px;
+    padding:15px;
+}
+
+.card{
+    background:var(--card-bg);
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 4px 6px rgba(0,0,0,.3);
+    position: relative;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 20px rgba(229,9,20,.4);
+}
+
+.card:active { transform: scale(0.95); }
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{
+    padding:10px;
+}
+
+.card-title{
+    font-size:12px;
+    font-weight: 600;
+    margin-bottom:0;
+    text-align:left;
+    color: #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ANIMACIÓN Y ESTADO DE REPRODUCCIÓN */
+.playing-now {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    display: none;
+    z-index: 5;
+}
+
+.card.active .playing-now { display: block; }
+.card.active { border: 2px solid var(--primary); }
+</style>
+</head>
+
+<body>
+
+<div class="video-box">
+    <div class="player-wrapper" id="playerWrapper">
+        <video id="mainPlayer" playsinline controls controlsList="nodownload"></video>
+        
+        <div class="video-overlay-controls" id="overlayControls">
+            <button class="nav-btn" onclick="event.stopPropagation(); playPrev()"><i class="fas fa-backward"></i></button>
+            <button class="nav-btn play-btn" id="centralPlayBtn" onclick="event.stopPropagation(); togglePlay()"><i class="fas fa-play"></i></button>
+            <button class="nav-btn" onclick="event.stopPropagation(); playNext()"><i class="fas fa-forward"></i></button>
+        </div>
+    </div>
+
+    <div class="player-info">
+        <span id="displayTitle" class="current-title">LISTO PARA REPRODUCIR</span>
+        <a href="../index.html" class="back-link"><i class="fas fa-chevron-left"></i> VOLVER AL MENÚ PRINCIPAL</a>
+    </div>
+</div>
+
+<h2>Episodios / Videos de LARVA</h2>
+<div class="grid-container" id="gallery"></div>
+
+<script>
+    const videos = [
+        { t: "1. LARVA - Alimentos Frenzados", u: "https://www.dropbox.com/scl/fi/h6znchmt0qovpxqc66vgy/LARVA-_-ALIMENTOS-FRENZADOS-_-Dibujos-animados-para-ni-os-_-WildBrain-720P_HD.mp4?rlkey=h22wb8maiiht28k1sqlg1nu34&st=iwzjshb4&dl=1", img: "https://www.dropbox.com/scl/fi/ghmqg7skg5xt3g9io095w/1779343993206.png?rlkey=krr4jb0b9weoxo1jpyt95rigj&st=kqaw2wwq&dl=1" },
+        { t: "2. LARVA - Yellow Saves The Day", u: "https://www.dropbox.com/scl/fi/vobh8tozqa0qtzrfzblxf/YELLOW-SAVES-THE-DAY_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=twhigwxqv517kjwjax5lec97a&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/x7cv8smablcxhm8p6usx2/A-vertical-9_16-3D-animated-style-poster.-Two-funny-cartoon-larvae-characte_20260521_024012_0000.png?rlkey=x4pmm3pmy3ixb0oyde0tefrsy" },
+        { t: "3. LARVA - Larvatar", u: "https://www.dropbox.com/scl/fi/ounwsiwgi5d1vp0hwftoa/LARVATAR_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=pq9y5cqsc8e5s9wtv6qvhzcvu&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/p1e716na5dsfqvns7pj0b/A-vertical-9_16-3D-animated-style-poster.-Two-funny-cartoon-larvae-characte_20260521_024114_0000.png?rlkey=7rmuaizlfwshy4srnglbbanhb" },
+        { t: "4. LARVA - Yellow New Girlfriend", u: "https://www.dropbox.com/scl/fi/whxgdwmbtstrz95npr7cf/YELLOW_S-NEW-GIRLFRIEND_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=6p15ip46pt5vq4krt7oufrlrd&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/b605ll1a5yiemuv93pnlh/IMG_20260521_022515.png?rlkey=oqulxhb6pxh8jlnlktlvinmg4" },
+        { t: "5. LARVA - This is Bad", u: "https://www.dropbox.com/scl/fi/7ciaax95p9ce94geo8p55/THIS-IS-BAD_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=2xmr6d62qze87hxx4fgfuo0vv&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/89e7a5gj5ttbx4crtx285/IMG_20260521_023219.png?rlkey=yysesv7zi29lawxxopgog7hjw" },
+        { t: "6. LARVA - Supersonic Sound", u: "https://www.dropbox.com/scl/fi/4qy3d36za8a2yczc2bczp/SUPERSONIC-SOUND_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=w6dkwkg1e4nj5mie7hm2kvc6k&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/8yxtyvn9oefiq7ockrwsl/IMG_20260521_025608.png?rlkey=un8x0hnee1mkypq8b36hqc58o" },
+        { t: "7. LARVA - Super Sonic Speed", u: "https://www.dropbox.com/scl/fi/2ljecyiuxozklhy0atief/Super-Sonic-Speed_-_-Larva-_-Cartoons-For-Kids-_-WildBrain-Kids-720P_HD.mp4?rlkey=o4nlomcilul9st5tapqua44gm&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/9a1n2jyk5mvayrj4a99fe/IMG_20260521_034221.png?rlkey=ih19kfwexw0gze4ln5xk3v7s8" },
+        { t: "8. LARVA - Stuck Together", u: "https://www.dropbox.com/scl/fi/772ixhkj49sz7ydyfwo6m/STUCK-TOGETHER_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=9pk7wkltkztmgzzowhe3d13sv&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/qug398p5g2ullok2bgvxy/IMG_20260521_034254.png?rlkey=wl34exq728w4afmm1vlp9vlq5" },
+        { t: "9. LARVA - Spider Attack", u: "https://www.dropbox.com/scl/fi/wbl3i39bkij8lfagl9xom/SPIDER-ATTACK_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=ew9dkbp28vychi2t6wd80ukmh&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/7gwuukuultj2ut8mpu3sk/IMG_20260521_034429.png?rlkey=6ssqr5cntbzz5k3we4gwmgpmg" },
+        { t: "10. LARVA - Pirate Mayhem", u: "https://www.dropbox.com/scl/fi/ds65xktpcixhudhr0bjff/PIRATE-MAYHEM_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=fzrzewbeyx7g3px9r77xt7zkm&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/d2fj74i2gpngpg1zbuokl/IMG_20260521_034508.png?rlkey=3fz91nr6kltx43wb40itc5el3" },
+        { t: "11. LARVA - Ping Pong Mania", u: "https://www.dropbox.com/scl/fi/flumheu32bwbzy79qm1fi/PING-PONG-MANIA_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=5skeggnkjlwuh7yawacic49cm&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/3js6g3vaerwdcfu11lijm/IMG_20260521_034536.png?rlkey=wbyyfk1rwfhg6ip8jz9hde7cp" },
+        { t: "12. LARVA - Need for Speed", u: "https://www.dropbox.com/scl/fi/4njjuscirszvknsyvscrw/NEED-FOR-SPEED_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=fgl6iywtdr6mks02r3g5nd72n&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/5z0jr32ztl07qeah3b9fx/IMG_20260521_034611.png?rlkey=vept8bv98u794ug67o1tl0ri7" },
+        { t: "13. LARVA - Magical Juice", u: "https://www.dropbox.com/scl/fi/d9y25kq76npth12otqnuh/IMG_20260521_034653.png?rlkey=gi8z4biqpcyt21hnvg57wfa2y", img: "https://dl.dropboxusercontent.com/scl/fi/d9y25kq76npth12otqnuh/IMG_20260521_034653.png?rlkey=gi8z4biqpcyt21hnvg57wfa2y" },
+        { t: "14. LARVA - Locked Away", u: "https://www.dropbox.com/scl/fi/q8y96vqm0yxa38brfq4b0/LOCKED-AWAY_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=lw4yni2rp4gu2mrnjzxg50yuy&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/ejojh5gflwztbuzfle9s9/IMG_20260521_034731.png?rlkey=paiunr9ekw0l8dx1jsy5rkbcm" },
+        { t: "15. LARVA - Robot Toy", u: "https://www.dropbox.com/scl/fi/ofkb9r2p4ur51pc63gdae/LARVA-ROBOT-TOY-2018-for-kid-720P_HD.mp4?rlkey=lnjijiw3n382mmwz8ma54wm9j&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/2h5c03ddiri5mt57mpnrx/IMG_20260521_034803.png?rlkey=2tu060ckyxtrw3cg2r1i5e0bo" },
+        { t: "16. LARVA - Larva Rangers Complete", u: "https://www.dropbox.com/scl/fi/ir7lg5qf7bt18tcomh31u/LARVA-RANGERS_-THE-COMPLETE-SERIES-_-LARVA-_-Cartoons-for-Kids-_-WildBrain-Kids-1080P_HD.mp4?rlkey=0i1nwb2bwl9nii1uw160h7g73&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/cnqlrbg3aulbx9ah8q2mb/IMG_20260521_034836.png?rlkey=ff35varpoimw6y37qbnjbe2y3" },
+        { t: "17. LARVA - Larva Rangers 1", u: "https://www.dropbox.com/scl/fi/t7jh50ctv0htdlt4rrt5x/Larva-Rangers-1-_-Larva-1080P_HD.mp4?rlkey=4wdd1870p10detgidx30ircbf&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/j1py4ry1kb7rdeu1wux03/IMG_20260521_035027.png?rlkey=vxavgnz3y6gnnminvhdjagfqe" },
+        { t: "18. LARVA - Super Heroes", u: "https://www.dropbox.com/scl/fi/y3ia61t6femp5j4ca001x/LARVA-SUPERH-ROES-_-Dibujos-animados-para-ni-os-_-WildBrain-720P_HD.mp4?rlkey=fwwnjperrulh7o7gnlgce9nj2&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/l5u9exftv258dy6gn0j63/IMG_20260521_035107.png?rlkey=re6xgh6kp7zhmhq21g7inw4ou" },
+        { t: "19. LARVA - Grape Wars", u: "https://www.dropbox.com/scl/fi/d3ns9ighhg7qkwejg1zv/GRAPE-WARS_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=labodluanzsy3nxtm56kk16pn&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/r7kago78aht4dypt912ro/IMG_20260521_035144.png?rlkey=59w6zkujdj5uws5n4xarhrwo3" },
+        { t: "20. LARVA - Galaxy Wars", u: "https://www.dropbox.com/scl/fi/zwhd5di7o5mduu0xwhn09/GALAXY-WARS_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=yyedjz4037xi8ejxzg26viab6&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/b1c52dkegjnz4iva32qkb/IMG_20260521_035223.png?rlkey=4ioa01r88cwv0tea8kz4ux2to" },
+        { t: "21. LARVA - Fuzzy Friend", u: "https://www.dropbox.com/scl/fi/izcr56n82tuixdjfmm8m7/FUZZY-FRIEND_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=tku51cbql45grvrebc5i43fkx&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/ydt4b949qbaccqsarzee3/IMG_20260521_035253.png?rlkey=ct1btw8xyz7zqvkqzswiju2jd" },
+        { t: "22. LARVA - Funny Guy", u: "https://www.dropbox.com/scl/fi/ibax0vkrq98v057m7uab8/FUNNY-GUY_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=qzn8nac4gjbblie8mhn56z90z&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/a866fuwiz4t6wfmu3ze1f/IMG_20260521_035335.png?rlkey=k9ldhd307qkych7yb7smwpdsj" },
+        { t: "23. LARVA - Chili Disaster", u: "https://www.dropbox.com/scl/fi/ip5kle8c9cg16p7vqqj2j/CHILI-DISASTER_-_-LARVA-_-Cartoons-For-Kids-_-WildBrain-Kids-720P_HD.mp4?rlkey=7v0sfej739lvj8y6riayzzmr2&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/c4777jcwfpq90n1mqvwoe/1779361493201.png?rlkey=fbtx80sv53bkwdxdd20qkc8cm" },
+        { t: "24. LARVA - Angry Red", u: "https://www.dropbox.com/scl/fi/obg40brnvkod7p3xecj3c/ANGRY-RED_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=mm8bql7cbeq1xfju0trmt204q&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/eyutrs3kh29jdlcswsnas/1779361593831.png?rlkey=o5264g26off9o7534dl5ztlg2" },
+        { t: "25. LARVA Incoming Jet", u: "https://www.dropbox.com/scl/fi/5h3ob49u5zffd2uanqfxm/Incoming-Jet_-_-LARVA-_-WildBrain-Kids-720P_HD.mp4?rlkey=pld7mcin7m460m9o1emzmdttz&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/u02ryr3fej0dvz6danr35/1779361619993.png?rlkey=9o39ea8sst98y0x70y81isdks" },
+        { t: "26. LARVA Superhéroes", u: "https://www.dropbox.com/scl/fi/gad6ivhgn89il9u5z4mqe/LARVA-_-supereroi-_-Cartoni-animati-per-bambini-_-WildBrain-720P_HD.mp4?rlkey=durqel4k7axqf1cpt8rdblh8m&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/9dyvgrt2ognklz58x0p30/1779361676178.png?rlkey=yn1ozarzzics9upj1114zl2kw" },
+        { t: "27. LARVA Episodio 450", u: "https://www.dropbox.com/scl/fi/0mrdza2g1uu7hjmu0gdj5/LARVA-BAGIAN-2-EPISOD-450-Kartun-Larva-Terbaru-2026-Kartun-3D-SMToonEntertainment-720P_HD.mp4?rlkey=56e1l07l2trp0atxd6qs7ug06&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/rc07ofm6cre33pu8yfviu/1779361992554.png?rlkey=ca0gew0p16604nchvn8u7uqio" },
+        { t: "28. Oscar Kim", u: "https://www.dropbox.com/scl/fi/0fu3znodps21hpmmwnnxq/Oscar-llerde-_-lk-B-l-m-Oscar-Kim_-_-Minika-1080P_HD.mp4?rlkey=decv7peszzgypxfa6bzsbkrrn&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/bjgwtyisdwshphxi5mc2f/1779362058759.png?rlkey=hepq88oopql7fco0a4i0y1236" },
+        { t: "29. Anla Ma Tamam", u: "https://www.dropbox.com/scl/fi/lvfi6mfdurbqe9a94z563/Oscar-llerde-_-Anla-ma-Tamam_-_-Minika-1080P_HD.mp4?rlkey=csn38o9ff2u13vv4qxlf1cs3i&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/uhfdwfcfqfsw3icf4fqgb/1779362128239.png?rlkey=5jmravab1bg5ubh8no0tt0slf" },
+        { t: "30. Oscar Kayboluyor", u: "https://www.dropbox.com/scl/fi/xzvkrc87wvxtb3ymiesyf/Oscar-llerde-_-Oscar-Ka-yor_-_-Minika-1080P_HD.mp4?rlkey=katqhvlm04wcjgfil7npm2jx6&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/jvchfj7zjqa5ga1enmwiv/1779362201656.png?rlkey=unqtk7wi2c7fxmcsyn45hgsxn" },
+        { t: "31. Oscar Se Esconde", u: "https://www.dropbox.com/scl/fi/jhxnslwj5ew395cnj7er0/Oscar-llerde-_-Oscar-Saklan-yor_-_-Minika-1080P_HD.mp4?rlkey=lx1l7u65y4pjcfuwt08oq8al3&dl=1", img: "https://dl.dropboxusercontent.com/scl/fi/x7cv8smablcxhm8p6usx2/A-vertical-9_16-3D-animated-style-poster.-Two-funny-cartoon-larvae-characte_20260521_024012_0000.png?rlkey=x4pmm3pmy3ixb0oyde0tefrsy" }
+    ];
+
+    const videoPlayer = document.getElementById('mainPlayer');
+    const titleDisplay = document.getElementById('displayTitle');
+    const overlayControls = document.getElementById('overlayControls');
+    const centralPlayBtn = document.getElementById('centralPlayBtn');
+    let currentIdx = -1;
+    let controlsTimer;
+
+    function initGallery() {
+        const gallery = document.getElementById('gallery');
+        videos.forEach((v, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${i}`;
+            card.innerHTML = `
+                <div class="playing-now">REPRODUCIENDO</div>
+                <img src="${v.img}" alt="${v.t}">
+                <div class="card-content">
+                    <div class="card-title">${v.t}</div>
+                </div>
+            `;
+            card.onclick = () => playVideo(i);
+            gallery.appendChild(card);
+        });
+    }
+
+    function playVideo(index) {
+        if (index < 0) index = videos.length - 1;
+        if (index >= videos.length) index = 0;
+        
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        const currentCard = document.getElementById(`card-${index}`);
+        if(currentCard) {
+            currentCard.classList.add('active');
+            currentCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+
+        currentIdx = index;
+        videoPlayer.src = videos[index].u;
+        videoPlayer.play().catch(err => console.log(err));
+        
+        videoPlayer.onended = () => playNext();
+        centralPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        titleDisplay.innerText = videos[index].t;
+        showControlsTemporarily();
+    }
+
+    function togglePlay() {
+        if (videoPlayer.paused) {
+            videoPlayer.play();
+            centralPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            showControlsTemporarily();
+        } else {
+            videoPlayer.pause();
+            centralPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            showControlsFixed();
+        }
+    }
+
+    function playNext() { playVideo(currentIdx + 1); }
+    function playPrev() { playVideo(currentIdx - 1); }
+
+    function showControlsTemporarily() {
+        clearTimeout(controlsTimer);
+        overlayControls.classList.add('show');
+        if (!videoPlayer.paused) {
+            controlsTimer = setTimeout(() => {
+                overlayControls.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    function showControlsFixed() {
+        clearTimeout(controlsTimer);
+        overlayControls.classList.add('show');
+    }
+
+    videoPlayer.addEventListener('click', (e) => {
+        e.preventDefault();
+        showControlsTemporarily();
+    });
+
+    document.getElementById('playerWrapper').addEventListener('click', (e) => {
+        if (e.target.id === 'playerWrapper' || e.target.id === 'overlayControls') {
+            showControlsTemporarily();
+        }
+    });
+
+    window.onload = initGallery;
+</script>
+
+</body>
+</html>
