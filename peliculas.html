@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phineas y Ferb - PRO ULTRA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --accent: #fbc02d;
+            --bg: #0a0a0c;
+            --card-bg: #1c1c21;
+            --text: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+
+        .player-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .video-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        video { width: 100%; height: 100%; object-fit: contain; }
+
+        .video-info { padding: 20px 0; }
+        .video-info h2 { margin: 0; font-size: 1.4rem; color: var(--primary); }
+
+        .episodes-section { padding: 0 5% 40px; }
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .episode-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .episode-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .episode-card.active { border-color: var(--accent); background: #25252b; }
+
+        .thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(45deg, #1c1c21, #333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thumb::after { content: '▶'; font-size: 1.5rem; color: rgba(255,255,255,0.2); }
+
+        .card-body { padding: 10px; }
+        .card-body p { margin: 0; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<header>GLYSTVpro</header>
+
+    <div class="logo">🎬 Películas Variables <span class="badge">PRO ULTRA</span></div>
+</header>
+
+<div class="player-container">
+    <div class="video-box">
+        <video id="mainVideo" controls autoplay playsinline>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+    <div class="video-info">
+        <h2 id="videoTitle">Cargando episodios...</h2>
+    </div>
+</div>
+
+<div class="episodes-section">
+    <div class="section-title">🎬 Películas Variables</div>
+    <div class="grid-container" id="grid"></div>
+</div>
+
+<div class="movie-list">
+    <!-- 1 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">1</span>
+            <img src="https://www.dropbox.com/scl/fi/is2tz045b18decjileiy3/carretera_mortal.png?rlkey=lzyqlqyj17pqj4376s1dctxgw&st=z7pdwhzo&dl=1" alt="Carretera Mortal (2018)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Carretera Mortal (2018)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/c3i9xda0ntp69ooa8zzu6/Carretera.Mortal.2018.1080P-Dual-Lat.mkv?rlkey=jwcuuyl5i61bzd72xqys1s9q1&st=745di1jm&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">2</span>
+            <img src="https://www.dropbox.com/scl/fi/jtee5aglc1oxbi20rl5b4/entre_padre_e_hijo.png?rlkey=5hiis47k1ry2ec8bi49gbj02q&st=oktjvsc6&dl=1" alt="Entre Padres e Hijos (2026)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Entre Padres e Hijos (2026)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/88cm3o3iyfnn13vfvqqdv/Entre.Padres.E.Hijos.2026.1080P-Dual-Lat.mp4?rlkey=wyi5yp2y8xtf7x18hkm6docpm&st=rbuc8ttq&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">3</span>
+            <img src="URL_DE_IMAGEN.jpg" alt="Video Personal 2026" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Video Personal 2026</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/0jogp7h5mj8gkwub7case/VID_20260401_092444_752.mp4.mkv?rlkey=gjnmw6mn6zr6ct4d4ff9u8t1u&st=grae37lg&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">4</span>
+            <img src="https://www.dropbox.com/scl/fi/f56vlbgfk0uwbcd6p7n9r/jet_li_accion.png?rlkey=6we0bn3cwk77s2c0ikwezlpy8&st=r2zkn9tf&dl=1" alt="Jet Li Acción" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jet Li Acción</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/q7q98wmq5r4w3c2uu3npo/JET-LI-se-infiltr-en-una-peligrosa-banda-para-destruirla-desde-dentro-Pel-cula-de-Acci-n-1080P_HD.mp4?rlkey=60x080kn52u0tihr3y060zsod&st=sppy9pu9&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">5</span>
+            <img src="https://www.dropbox.com/scl/fi/0icxfar65zhc9wcu63bru/jhon_carter.png?rlkey=hbun35qyud7xbxr5kaaw0zguk&st=9jhdoj64&dl=1" alt="John Carter (2012)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">John Carter (2012)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/y1ti7d16n39jajno2fac8/John-Carter-1080p-DUAL-4.06-GB.mkv?rlkey=3je50oz9hjs124wip4hc8en8i&st=nddd518m&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">6</span>
+            <img src="https://www.dropbox.com/scl/fi/wqe4w8m7cc3j7j8kexaz8/masacre_en_el_barrio_chino.png?rlkey=0d0i9oprtta1z8i56xtuktmrp&st=3e6vqxrf&dl=1" alt="Jackie Chan - Masacre en el Barrio Chino" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jackie Chan - Masacre en el Barrio Chino</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/6b1dm8osvx2g0ottniw6k/LA-PEL-CULA-M-S-BRUTAL-DE-JACKIE-CHAN_-Masacre-en-el-Barrio-Chino_-COMPLETA-Y-DOBLADA-1080P_HD.mp4?rlkey=wuw3fcxzn6a55eeor2lnadr8b&st=w7q6y787&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">7</span>
+            <img src="https://www.dropbox.com/scl/fi/ls4eh3fjkhqphhwcr6dyy/goat.png?rlkey=1w3kv950qiy5ogdze3n48a369&st=dapdlsmw&dl=1" alt="Goat (2026)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Goat (2026)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/2wtt4v31mdre0pq4eczyd/La.Cabra.Que.Cambi-.El.Juego.-.Goat.2026.1080P-Dual-Lat.mp4?rlkey=v8e4hp2586zyvv42xpg6zvn34&st=izyy00v6&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">8</span>
+            <img src="https://www.dropbox.com/scl/fi/5nf8epy5gedx12ng6cbe0/siempre_da_fuerzas.png?rlkey=ii61mmxz63xzhx93cd0gq32s1&st=fw9j75y9&dl=1" alt="Película Cristiana Motivacional" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Película Cristiana Motivacional</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/1dc6kq9yd2yjnc56sx2sn/Una-pel-cula-que-tocar-cada-coraz-n-Dios-siempre-da-fuerzas-a-quienes-l-llama-1080P_HD.mp4?rlkey=wuammsbaxeowpwn0rj3m7x1kv&st=d81io3em&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">9</span>
+            <img src="https://www.dropbox.com/scl/fi/lg2qe0mv1iouefn3gfrr5/jason_statham_vs_jet_li.png?rlkey=f7d708kd8lr3q1i666arpz237&st=nppix9ke&dl=1" alt="Jason Statham vs Jet Li" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jason Statham vs Jet Li</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/miezjtxp8ia7slkjx980b/JASON-STATHAM-VS-JET-LI-__-Pel-cula-Completa-en-HD-__-MOVIE-NATION-SPANISH-1080P_HD.mkv?rlkey=frs1iv4bpdfpt3a8wamu1cpim&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">10</span>
+            <img src="https://www.dropbox.com/scl/fi/4s8axluovel9jehod2k4l/Megan_Fox_Acci-n_-frica.png?rlkey=k9zs3namytls1l6642k7yeexo&st=6qfcyuys&dl=1" alt="Megan Fox Acción África" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Megan Fox Acción África</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/loul04gtoow4a910w4kt3/La-pel-cula-de-acci-n-m-s-emocionante-con-Megan-Fox-en-la-sabana-africana-Pelicula-completa-1080P_HD.mp4?rlkey=2ye7jo0u0tbroarcqx2ulure4&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">11</span>
+            <img src="URL_DE_IMAGEN.jpg" alt="Jackie Chan Masacre Barrio Chino" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jackie Chan Masacre Barrio Chino</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/6b1dm8osvx2g0ottniw6k/LA-PEL-CULA-M-S-BRUTAL-DE-JACKIE-CHAN_-Masacre-en-el-Barrio-Chino_-COMPLETA-Y-DOBLADA-1080P_HD.mp4?rlkey=wuw3fcxzn6a55eeor2lnadr8b&st=w7q6y787&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">12</span>
+            <img src="https://www.dropbox.com/scl/fi/y5kb1lldypge3p6jt14y4/Chuck_Norris_Acci-n.png?rlkey=7in5buzpsa0j856a8sn5s9r7e&st=azqahae0&dl=1" alt="Chuck Norris Acción" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Chuck Norris Acción</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/q15odgodc26skohva62n9/Legendary-Movie-by-Chuck-Norris-_-Hollywood-Action-Movie-_-Full-Movie-Action-Movies-1080p-1080P_HD.mp4?rlkey=9mzaq8webeb65xguy337bxwlg&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">13</span>
+            <img src="https://www.dropbox.com/scl/fi/9stqzhmsgx4z28dsog35i/Lionheart_1990.png?rlkey=e1x5zgk75nxy4ide1uvsle0dz&st=ymi1po83&dl=1" alt="Lionheart 1990 Van Damme" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Lionheart 1990 Van Damme</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/tavjxtn8ofm3xsgdj7doc/Lionheart-1990-Jean-Claude-Van-Damme-_-No-mercy.-No-limits.-Only-fists-and-fury.-4K-1080P_HD.mp4?rlkey=hvf6tjusvsjmbotq36erd10ml&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">14</span>
+            <img src="https://www.dropbox.com/scl/fi/f1lh2in3ympa56pzb4klc/Triple_Amenaza_2019.png?rlkey=injixxb2u59ht83ocjdpfbqms&st=njiggl12&dl=1" alt="Triple Amenaza 2019" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Triple Amenaza 2019</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/qmzcekrd8xqnp88yiidvm/Triple-Amenaza-2019-Pel-culas-En-Espa-ol-1080P_HD.mp4?rlkey=jjrap8gigq7qd8f0u84ptvr0d&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">15</span>
+            <img src="https://www.dropbox.com/scl/fi/yccq0vkfeyt85qsq7likb/El_Aguij-n_del_Desierto.png?rlkey=x2z6mpugaxk8qrz0wc0hma1rd&st=1lodx8ju&dl=1" alt="El Aguijón del Desierto" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Aguijón del Desierto</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/yhiiheqa7iz6qbfk09r52/ESTA-PEL-CULA-ES-SIMPLEMENTE-MARAVILLOSA_-QUE-PIENSAS-DE-EL_-EL-AGUIJ-N-DEL-DESIERTO-1080P_60FPS.mp4?rlkey=gtw3zyad3m3o3lixjixoqjbc9&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 16 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">16</span>
+            <img src="https://www.dropbox.com/scl/fi/abr8boayt9hopq16rnxx5/Tarz-n_Animada.png?rlkey=fabnulv9bce3yk18s85ivg426&st=i84lj0qz&dl=1" alt="Tarzán Animada" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Tarzán Animada</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/8jq4uw5t9s76jihjiawhu/Mejor-Pel-cula-Animada-de-Aventura-_-Tarzan-_-Peliculas-Completas-en-Espa-ol-Latino-1080P_HD.mp4?rlkey=t0t3a0whl4npi7dyr6wq7lv8n&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 17 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">17</span>
+            <img src="https://www.dropbox.com/scl/fi/7mgtje7v899ul84wqd63m/IP_Man_-1.png?rlkey=vi1wie3p9ejldr6w1tc3lc8ag&st=k3zytj8r&dl=1" alt="IP Man 1" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">IP Man 1</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/cx8vld4drtn9m6sd86ys3/IP_MAN.mp4?rlkey=ot4s978rsk4bcvar7s90yof83&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 18 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">18</span>
+            <img src="https://www.dropbox.com/scl/fi/voxlmh6wwi69bs7xx879h/IP_Man_-2.png?rlkey=eluwo4rectkhfc2vmytkskubm&st=5hab1bjx&dl=1" alt="IP Man 2" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">IP Man 2</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/xc19r67egbo7m1kvifunl/ip_man_-2.mp4?rlkey=f2dikhlqwhgth7i1cwur9wiwt&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 19 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">19</span>
+            <img src="https://www.dropbox.com/scl/fi/dtig480u9sbjc3eat3vxc/IP_Man_-3.png?rlkey=gaz410em7j07elasclh1dgdxh&st=6bpwosi9&dl=1" alt="IP Man 3" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">IP Man 3</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/nnjb3yqw1rsetbxbhvxs7/IP_man_-3.mp4?rlkey=t9dsam23w0dtrsp99lui0hjmk&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 20 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">20</span>
+            <img src="https://www.dropbox.com/scl/fi/lum3r80v3ki764b6w06f6/IP_Man_-4.png?rlkey=pays9jdj4iajtwpvb9gplvusx&st=hp7swywc&dl=1" alt="IP Man 4" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">IP Man 4</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/bkt6b96cqyaw5608g95wz/IP_man_-4.mp4?rlkey=llpdwiksmzmo075ncqca3p3t6&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 21 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">21</span>
+            <img src="https://www.dropbox.com/scl/fi/yss8mmmdewdb3o0jgote5/Ratatoy.png?rlkey=rd9m44vg55frv0f7t2y6nd65i&st=5vr2oovm&dl=1" alt="Ratatoy" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Ratatoy</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/wofo55ja6xn1ohp3qvm0z/ratatoy.mp4?rlkey=tvmnviozl7zcr0bv83knsol2y&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 22 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">22</span>
+            <img src="https://www.dropbox.com/scl/fi/agcamu411tjoz6bub97jr/huevos.png?rlkey=tsmztxn71v9kszlvvz7in550c&st=s5vur16n&dl=1" alt="Huevos" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Huevos</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/mt6h26znq706zm0e75t5f/huevos.mp4?rlkey=wilpj2ah3v2uezualz4lkxxe4&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 23 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">23</span>
+            <img src="https://www.dropbox.com/scl/fi/noyondb3wnoy68n2ctjs2/gol.png?rlkey=ykazkd5nk2tz0v5v95djp9kra&st=i7bmen2o&dl=1" alt="Gol 1" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Gol 1</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/sh073ketfjfaamwg1e65p/Gol.mp4?rlkey=hu4mbcjlr9ivgj0x0ucryv8no&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 24 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">24</span>
+            <img src="https://www.dropbox.com/scl/fi/d52bx0xq0ye6uy08gv6jt/gol_2.png?rlkey=76mzxidptrzxa1dejf5m5m64v&st=dscdapy9&dl=1" alt="Gol 2" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Gol 2</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ae07um7ccznqljw46tin5/GOL_-2.mp4?rlkey=qmecdhmesqr0wha78b5b9jpfi&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 25 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">25</span>
+            <img src="https://www.dropbox.com/scl/fi/unweaqx3iecdkbxnjugqd/gol_3.png?rlkey=8tigtoqyzqqr19wtx5adj2pft&st=lvkx272v&dl=1" alt="Gol 3" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Gol 3</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/kchi5sp0qwtye2mc2scy5/GOL_-3.mp4?rlkey=j9xrgrjvl7rkaiwmydms03v2o&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 26 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">26</span>
+            <img src="https://www.dropbox.com/scl/fi/po3p58mrln8kgm1q4j6sv/La_Monta-a_Embrujada.png?rlkey=w0srsjceq2sjf0xc31jdqwqhj&st=0dzqenzv&dl=1" alt="La Montaña Embrujada (2009)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">La Montaña Embrujada (2009)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ssuka43d0uiooe3jh6cw0/La.Monta-a.Embrujada.2009.1080P-Dual-Lat.mp4?rlkey=f77mdvxtz0dlvd2muhhhqc0pg&st=e3x147zl&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 27 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">27</span>
+            <img src="https://www.dropbox.com/scl/fi/cg1b6oyw19kduciopfslf/Alabanzas_Cristianas_para_Ni-os.png?rlkey=sasg85do5pjzrnhhp58h60v7d&st=bjvyqzp6&dl=1" alt="Alabanzas Cristianas para Niños" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Alabanzas Cristianas para Niños</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ec4fbtfsxd8elwdx2w9sx/Alabanzas-Cristianas-para-Ni-os-sin-Pausa-1h10m-de-Coritos-que-Har-n-Gozar-720P_HD.mp4?rlkey=kkz6evoturk0bgxtvv6krhags&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 28 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">28</span>
+            <img src="https://www.dropbox.com/scl/fi/wf1vqs3afluil2khblyup/larva.png?rlkey=6ngd2688khe4uon0ewlwcfiy1&st=sohaaibh&dl=1" alt="Isla Larva: La Película" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Isla Larva: La Película</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vgc0avqb2pmu60nthwgc0/Isla-Larva-La-pel-cula-720p-DUAL-1.72-GB.mp4?rlkey=u8mq8hipr2v2bfh0f5wfp37uo&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 29 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">29</span>
+            <img src="https://www.dropbox.com/scl/fi/u66l6nvkbrl5gza25dxf0/musica_cristianas.png?rlkey=0mlbslutnd94xxhn270gis36s&st=4mhsghfs&dl=1" alt="Música de Bendición" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Música de Bendición</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/1fszg47126v151rdt5odt/MUSICA-DE-BENDICION.mp4?rlkey=8em67h27xh3y8g18x99jykp4j&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 30 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">30</span>
+            <img src="https://www.dropbox.com/scl/fi/m0o8kg2q4jxf218hd0z03/Detective_De_Mascota.png?rlkey=3d88ghpir454vnezpth8krt8s&st=5pb8svcn&dl=1" alt="Ace Ventura: Detective De Mascota (1994)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Ace Ventura: Detective De Mascota (1994)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/3bzt4hbrpveczxipoq67g/Ace.Ventura.1.Detective.De.Mascota%20Luus.1994.1080P-Dual-Lat.mp4?rlkey=lrywtro26t3nwll8e5t6onmyd&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 31 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">31</span>
+            <img src="https://www.dropbox.com/scl/fi/nbudknv69phoncd29jn3f/desahusido.png?rlkey=8lzpj18o4sz8g6ptrc3dfrzpq&st=o86ng1pa&dl=1" alt="El Club De Los Desahuciados (2013)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Club De Los Desahuciados (2013)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/r2vcx8djldtkhvivcqgpr/El.Club.De.Los.Desahuciados.2013.1080P-Dual-Lat.mp4?rlkey=d02b88v8tvz4ptbxn9jyc98wb&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 32 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">32</span>
+            <img src="https://www.dropbox.com/scl/fi/lhm6gurjuds4n43t22qs3/truman.png?rlkey=tnlb9vg32y9boh8rotqksbsc1&st=3kx7936j&dl=1" alt="El Show De Truman (1998)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Show De Truman (1998)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/qsy4saxwxn9gbcfl1v4xw/Elshowdetruman.1998.1080P-Dual-Lat.mp4?rlkey=km7pb5buov8ph2m8qnaotkmit&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 33 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">33</span>
+            <img src="https://www.dropbox.com/scl/fi/6b44nda8n5p8wib6jpr4h/familia.png?rlkey=gi52hng9myx4svs3hdwd8cals&st=x548pzj2&dl=1" alt="Family Switch (2023)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Family Switch (2023)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/pbnxr2u32157e4e59en6y/Family.switch.2023.1080P-Dual-Lat.mp4?rlkey=9jykjuy91y5nyl7clw957jqvq&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 34 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">34</span>
+            <img src="https://www.dropbox.com/scl/fi/y0j86j906rcfefl47wtcy/yo_y_mi_otro_yo.png?rlkey=x5wafjibhtdoobikritx660m2&st=8s98k6tl&dl=1" alt="Irene, Yo Y Mi Otro Yo (2000)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Irene, Yo Y Mi Otro Yo (2000)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/stzw57xi3uuoq34gac5wk/Irene.Yo.Y.Mi.Otro.Yo.2000.1080P-Dual-Lat.mp4?rlkey=jn9b4jq6dpyzer00xa63cp6sf&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 35 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">35</span>
+            <img src="https://www.dropbox.com/scl/fi/need4enu37g4tra9xwlem/la_mascara.png?rlkey=nplvll4ogftbqtia1t16rbdbf&st=douj1rlh&dl=1" alt="La Máscara (1994)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">La Máscara (1994)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/9w69q0l1q321lxs1qxbie/La.M-scara.1994.1080P-Dual-Lat.mp4?rlkey=grzlxdyesxk0ao7w71erncptf&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 36 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">36</span>
+            <img src="https://www.dropbox.com/scl/fi/j9jit183mla178w8a5cg3/dick_jane.png?rlkey=18mw5v0rmcw6rlthbz5crmvzi&st=prgervxs&dl=1" alt="Las Locuras De Dick Y Jane (2005)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Las Locuras De Dick Y Jane (2005)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/d69vh01yo2yt9s28vuujg/Las.Locuras.De.Dick.Y.Jane.2005.1080P-Dual-Lat.mp4?rlkey=t7yeofirz4bb4x5dw4yxv8cpp&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 37 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">37</span>
+            <img src="https://www.dropbox.com/scl/fi/5crfxy4uzj6w02c716w6a/mentiroso.png?rlkey=65bgvg8z711gzbqpepyx076dw&st=26mh4542&dl=1" alt="Mentiroso Mentiroso (1997)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Mentiroso Mentiroso (1997)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/k6amqgaf2612ebqbj8w4o/Mentiroso.Mentiroso.1997.1080P-Dual-Lat.mp4?rlkey=r62vushak5jzfb9841xse2rzn&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 38 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">38</span>
+            <img src="https://www.dropbox.com/scl/fi/r31ncfb57yz09ybiql4l7/si_se-or.png?rlkey=ur31ud7p4muqetxuqo3yxdk9h&st=69y4iva7&dl=1" alt="Sí, Señor (2008)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sí, Señor (2008)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/tg4u0bh6tkhxbzr0rpngd/S-.Se-or.2008.1080P-Dual-Lat.mp4?rlkey=9m9jof98sh9qxrqdnzeqdrdur&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 39 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">39</span>
+            <img src="https://www.dropbox.com/scl/fi/bwaes1wvesaon6frspi63/Sonic_2.png?rlkey=8pga5c2jz0zqnqd2i1atc51wq&st=0l9if14i&dl=1" alt="Sonic 2 La Película (2022)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sonic 2 La Película (2022)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/gfn003c40f91u1hp60txm/Sonic.2.La.Pel-cula.2022.1080P-Dual-Lat.mp4?rlkey=fio949yyyyly0gna07g4ldxpu&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 40 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">40</span>
+            <img src="https://www.dropbox.com/scl/fi/7ef868wab6syg9xlxx4ly/Sonic_1.png?rlkey=usa7tdy5j8erbkgaewvlffra0&st=x7lv93im&dl=1" alt="Sonic The Hedgehog (2020)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sonic The Hedgehog (2020)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/wno0qnrsqpkny6fzkitbv/Sonic.The.Hedgehog.2020.1080P-Dual-Lat.mp4?rlkey=vqie3uen81qekcw8q8i1iqoff&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 41 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">41</span>
+            <img src="https://www.dropbox.com/scl/fi/f2b5tx8ofperdx10k927k/todopoderoso.png?rlkey=rrpp2wrs8o14rqvunxixmrg7t&st=ujlsdqsp&dl=1" alt="Todopoderoso (2003)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Todopoderoso (2003)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/558xlin9hro72h78sgr2d/Todopoderoso.2003.1080P-Dual-Lat.mp4?rlkey=w8q21jb7ubwdmwjmhtjepbvpd&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 42 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">42</span>
+            <img src="https://www.dropbox.com/scl/fi/qycsidcpdgvqq5wo6t5nr/Home.Invasion.png?rlkey=nc9x03h4fci2206qp2zwjgvvp&st=l8i2w1sl&dl=1" alt="Horton Y El Mundo De Los Qui-n 2008" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Horton Y El Mundo De Los Qui-n 2008</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/dbqufxqmrfigq1pda1a0t/Horton.Y.El.Mundo.De.Los.Qui-n.2008.1080P-Dual-Lat.mp4?rlkey=cewo1f6630m3ivh2fadjr7i7d&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 43 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">43</span>
+            <img src="https://www.dropbox.com/scl/fi/ebp12u35br41bobrjl0mp/El_Grinch.png?rlkey=z0jdt4jq50qcno0whn5du39bs&st=khtqwrel&dl=1" alt="El Grinch 2000" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Grinch 2000</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/p5us1owfl72k59ipvm4vc/El.Grinch.2000.1080P-Dual-Lat.mp4?rlkey=yjyg8ho9xfq51xn4gb1m2qzs3&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 44 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">44</span>
+            <img src="https://www.dropbox.com/scl/fi/ujptipgcqb8kotpvxww4i/agente_fortune.jpeg?rlkey=vop8zbf8muvp0t8k6pphajnxu&st=dn88dsls&dl=1" alt="Agente Fortune - El Gran Engaño 2023" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Agente Fortune - El Gran Engaño 2023</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/0xxzzlitrd6p8lqbkzj91/Agente.Fortune-.El.Gran.Enga-o.2023.1080P-Dual-Lat.mp4?rlkey=ks6zrvt2x9pucu8gz1jhve6pj&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 45 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">45</span>
+            <img src="https://www.dropbox.com/scl/fi/cuppis7c9ykh2w6e45s74/12_Desafios.png?rlkey=yjg55ot9wc9hodn8cyfbpdjla&st=miht12eb&dl=1" alt="12 Desafios 2009" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">12 Desafios 2009</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/s6m4h7t432rvoxe61o1k4/12.Desafios.2009.1080P-Dual-Lat.mp4?rlkey=s3k2rbablynnaxuu843ptu4a2&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 46 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">46</span>
+            <img src="https://www.dropbox.com/scl/fi/06kx7zfrc5kffuib79hto/american_assasin.jpg?rlkey=uled03hj0x3j6pjighr7obyuo&st=k1etjync&dl=1" alt="American Assassin 2017" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">American Assassin 2017</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vl51rgwk2rl9g689ts7n0/American.assassin.2017.1080P-Dual-Lat.mp4?rlkey=tetcd4i8rgs75udqguhniaxgq&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 47 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">47</span>
+            <img src="https://www.dropbox.com/scl/fi/5aejamqwbspzu32zqgwu1/asesoramiento.jpeg?rlkey=e8zbhrzna11qnrwbjpxstdty7&st=t02v5n12&dl=1" alt="Asesinatos Accidentales 2018" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Asesinatos Accidentales 2018</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/t09luo4vtgjriej5ubwqw/Asesinatos.Accidentales.2018.1080P-Dual-Lat.mp4?rlkey=p63ao4k97d4j42tjw146rem9q&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 48 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">48</span>
+            <img src="https://www.dropbox.com/scl/fi/5ciopi6t4g9lg7mu1soa2/asesinato_elite.jpeg?rlkey=023d7nl3ddog7hqu9kfsp2g6e&st=pcsspry0&dl=1" alt="Asesinos De Élite 2011" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Asesinos De Élite 2011</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/t0387qgei018abor27t24/Asesinos.De.-lite.2011.1080P-Dual-Lat.mp4?rlkey=wqblcevibsk7b6e6a4skowlnk&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 49 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">49</span>
+            <img src="https://www.dropbox.com/scl/fi/3607qu3jnwgf4ny7ln3lu/Bay_watch.jpeg?rlkey=m0kmbliufmuxsinlyqoet9mtd&st=v8jn6r24&dl=1" alt="Baywatch 2017" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Baywatch 2017</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/4xn6o9zph2oe6zhsxn1gl/Baywatch.2017.1080P-Dual-Lat.mp4?rlkey=0t7qe1wc7nnflwb13bfnrcz9o&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 50 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">50</span>
+            <img src="https://www.dropbox.com/scl/fi/0ijrik9nq3es5foq9xg04/big_game.jpeg?rlkey=nrtv10u8sy4ipwr6k9wxnqcew&st=up0rnkuu&dl=1" alt="Big Game 2014" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Big Game 2014</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/2ozijwtm4zgpkxto8r7u8/Big.Game.2014.1080P-Dual-Lat.mp4?rlkey=vw78u2qobgulp0iahd5mcdkni&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 51 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">51</span>
+            <img src="https://www.dropbox.com/scl/fi/gq3dzvvyvxapi5ytzrsst/clandestino.jpeg?rlkey=1y10ginwjaue9974bzxr6yxoh&st=gmgy988y&dl=1" alt="Castle Falls 2021" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Castle Falls 2021</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/qdgd1nr4ylphw544nrloh/Castle.Falls.2021.1080P-Dual-Lat.mp4?rlkey=730apurly8or1uci1wjtmff0v&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 52 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">52</span>
+            <img src="https://www.dropbox.com/scl/fi/w2daga6n0t9v9qrnbe539/celular.jpeg?rlkey=v3u3pvi59vjnvaoezdkewonuq&st=hokn9cbs&dl=1" alt="Celular 2004" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Celular 2004</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vjg14tqdeh7awo0khr9lj/Celular.2004.1080P-Dual-Lat.mp4?rlkey=sx87uh2bzpz6lxhhibzcgsv5a&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 53 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">53</span>
+            <img src="https://www.dropbox.com/scl/fi/218ie0lh03yy0cpf90qu9/c-digo_rojo.jpeg?rlkey=tgzhoq05ges6pp3qgrufxnevv&st=btrzkni2&dl=1" alt="Código Traje Rojo 2024" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Código Traje Rojo 2024</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/4zju1xaaqbm8rtrshx1zv/C-digo.Traje.rojo.2024.1080p-Dual-Lat-1.mp4?rlkey=jhpdmao6xkbgu59c1cgwnbxc8&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 54 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">54</span>
+            <img src="https://www.dropbox.com/scl/fi/6a2rqu2oio82rndfux6l0/combate.png?rlkey=84dwfky2hexvs9ws2b3lyuy8t&st=o2aagd33&dl=1" alt="Combate Clandestino 2024" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Combate Clandestino 2024</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ss0poinssd3v3z01ih28k/Combate-Clandestino.2024.1080P-Dual-Lat.mp4?rlkey=4rbz3zfxi8l0uda6md3pgrup1&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 55 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">55</span>
+            <img src="https://www.dropbox.com/scl/fi/fkztyebjovdjeziod800q/crank.jpeg?rlkey=gdj73280jcazsdd66pjwwhqnv&st=wbh54ea9&dl=1" alt="Crank Muerte Anunciada 2006" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Crank Muerte Anunciada 2006</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/cu1vt31yduyzv6ux3giwx/Crank.muerte.anunciada.2006.1080P-Dual-Lat.mp4?rlkey=wrd0lypnjy56zkdlqwxhq922t&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 56 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">56</span>
+            <img src="https://www.dropbox.com/scl/fi/gaspr93c6ufs3hvum5zxm/da-o_colateral.png?rlkey=gwykfjipu2trwsgfrfb94cynw&st=j57mwukr&dl=1" alt="Daño Colateral 2002" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Daño Colateral 2002</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/u0vapdhyjzfg7by7ik7az/Da-ocolateral.2002.1080P-Dual-Lat.mp4?rlkey=yrlyum22cre1jzu4x13zy0axe&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 57 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">57</span>
+            <img src="https://www.dropbox.com/scl/fi/yrj93yuszydfags9o73b8/simio_revolucion.jpeg?rlkey=9rsotz5g1egap8swdacyg6qkd&st=upec0lqy&dl=1" alt="El Planeta de los Simios - Revolución (2011)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Planeta de los Simios - Revolución (2011)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/fmi2cq0zvgnq53qoetntz/El.planeta.de.los.simios.-R-Evoluci-n.2011.1080p-dual-lat.mp4?rlkey=qck0cfb3wm2cz5y7f8b4bdf8m&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 58 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">58</span>
+            <img src="https://www.dropbox.com/scl/fi/zcgwb8f1pbus5z91h2ajo/simio_la_guerra.jpeg?rlkey=pvw2m0ccc09y3uiamo8vf78w4&st=mnicy1e0&dl=1" alt="El Planeta de los Simios: La Guerra (2017)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Planeta de los Simios: La Guerra (2017)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/408ki041xq30fsavik9vd/El.Planeta.de.los.Simios.La.guerra-.2017.1080p-dual-lat.mp4?rlkey=j1mazpujxli92pm1poljt6sit&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 59 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">59</span>
+            <img src="https://www.dropbox.com/scl/fi/mfypqtg1393t15xfmy6vz/simio_confrontacion.jpeg?rlkey=fdrm8dpwxrwtdzptia3909pqu&st=3j3kkwni&dl=1" alt="El Planeta de los Simios: Confrontación (2014)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Planeta de los Simios: Confrontación (2014)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/9vpmp14axufk2vh2m7j0k/El.planeta.de.los.simios.Confrontaci-n.2014.1080p-dual-lat.mp4?rlkey=jwovlew32fvsnvujuc7o7b50v&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 60 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">60</span>
+            <img src="https://www.dropbox.com/scl/fi/8feptxbur6sxdg6zm80hs/rey_escorpion.png?rlkey=mxsfy0ggfl4drwvwgop1slcc3&st=ojeb83zt&dl=1" alt="El Rey Escorpión 2002" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Rey Escorpión 2002</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/nd85bvur3fetj7e08cj6z/El.Rey.Escorpi-n.2002.1080P-Dual-Lat.mp4?rlkey=5z4mdzbpobwgxdojls52p3ifo&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 61 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">61</span>
+            <img src="https://www.dropbox.com/scl/fi/56mmhkytp445xka3vvfhv/redentor.jpeg?rlkey=3jsteyth7ci9bbkmj17rs2vf1&st=xkz88nab&dl=1" alt="El Redentor 2013" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Redentor 2013</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/2xrlr0wr17l7mqs0071lk/El.redentor.2013.1080P-Dual-Lat.mp4?rlkey=lrkz1emkpuq8j7hm29qy7me4w&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 62 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">62</span>
+            <img src="https://www.dropbox.com/scl/fi/l0y8lx5u8ve6d1g0o709j/justicia_implacable.png?rlkey=34b04n59akfcizs1o73tsm6la&st=nfjs003h&dl=1" alt="Justicia Implacable 2021" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Justicia Implacable 2021</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/w54uqfndooqlx4fh808a9/Justicia.Implacable.2021.1080P-Dual-Lat.mp4?rlkey=7gjha2rmhml77pkax3jykizut&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 63 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">63</span>
+            <img src="https://www.dropbox.com/scl/fi/o0d034y2eh6cph66i92it/la_deuda_2.png?rlkey=oipr7jqmtdg5t2z9l1xpzmcpb&st=mknx57rw&dl=1" alt="La Deuda 2" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">La Deuda 2</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/s811l1xsvckrc7dnpwkmo/La.Deuda.2.1080P-Dual-Lat.mp4?rlkey=yxv2eb5qp9uab37n2w7b80rc8&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 64 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">64</span>
+            <img src="https://www.dropbox.com/scl/fi/2fj4hsutyy2mad8kiofgy/transportador.png?rlkey=i5fxskq1ms4ib0exvm779x0hv&st=f29mykfd&dl=1" alt="El Transportador 2002" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Transportador 2002</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/q0p6nk4ckkj8rpebtfz6w/El.Transportador.2002.1080P-Dual-Lat.mp4?rlkey=gk6xhkxgfarj3327oz3dh987d&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 65 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">65</span>
+            <img src="https://www.dropbox.com/scl/fi/54k4np8kua9pyl6qmtf7w/transportador_2.png?rlkey=f6lvrcjmqhd9uedpitdvyap8y&st=1kdnfvxr&dl=1" alt="El Transportador 2 2005" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Transportador 2 2005</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/4vlyjmao3c18b70if06s1/El.Transportador.2.2005.1080P-Dual-Lat.mp4?rlkey=0e1g9b07tc51znye45ox5fyuo&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 66 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">66</span>
+            <img src="https://www.dropbox.com/scl/fi/m8c3wb6vrix4y047zykna/transportador_3.png?rlkey=h0optokxri604ngppjnhdmb90&st=4bvi9ez7&dl=1" alt="El Transportador 3 2005" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Transportador 3 2005</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/3ym7nc9rx9w2jzv7rlbgo/El.Transportador.3.2005.1080P-Dual-Lat-1.mp4?rlkey=vda3tqifdtseqhgfjoihfxqhg&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 67 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">67</span>
+            <img src="https://www.dropbox.com/scl/fi/6ou43qt14pkdm7xfn136k/elio.jpeg?rlkey=y2rjuuzi9cswnujqrtg1088kv&st=znpf62dx&dl=1" alt="Elio 1080p DUAL" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Elio 1080p DUAL</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/w8abo0837a55p6wu5867i/Elio-1080p-DUAL-8.15-GB.mp4?rlkey=7rcb87lh8e0efdrmowp1dst6j&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 68 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">68</span>
+            <img src="https://www.dropbox.com/scl/fi/rl1ix8dtgz3jc1gwefwah/la_isla.png?rlkey=kdo6ya14igpdtj38czrr3llfp&st=dmy8mkxt&dl=1" alt="La Isla 2005" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">La Isla 2005</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/wqx5coo4hkn5guqr5p8df/La.Isla.2005.1080P-Dual-Lat.mp4?rlkey=e8tsbrxpblyeor4l8w6633byk&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 69 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">69</span>
+            <img src="https://www.dropbox.com/scl/fi/1pvoddo1wx1x2szyzyivh/cademia_piloto_2.png?rlkey=mxr9mth6kava77zcwutp7iy6d&st=gf6zpfgd&dl=1" alt="Loca Academia De Pilotos 2" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Loca Academia De Pilotos 2</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/7we30xjz2nlfd2znu8oqe/Loca.Academia.De.Pilotos.2.1080P-Dual-Lat.mp4?rlkey=hm798tl868dldqjf1hhx7buum&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 70 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">70</span>
+            <img src="https://www.dropbox.com/scl/fi/e606tjmls08ety19sntmr/mentira_verdadera.png?rlkey=57vmf5vn8xxu7oax19vmv092u&st=wr0ktbvj&dl=1" alt="Mentiras Verdaderas 1994" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Mentiras Verdaderas 1994</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/nh06rdu4zpyqhuiln28wl/Mentirasverdaderas.1994.1080P-Dual-Lat-1.mp4?rlkey=ryvzii49u06vil6frak3ksn81&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 71 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">71</span>
+            <img src="https://www.dropbox.com/scl/fi/0lmrwhi90p5bg2tmdcqym/mercader-a.png?rlkey=s17o2e3b7rzskr53fhw6fkpc4&st=qupljlj2&dl=1" alt="Mercenarias: Misión Imposible" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Mercenarias: Misión Imposible</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/rru3tg3asvzhhq5p169ga/Mercenarias_-Misi-n-Imposible-Pel-cula-de-Acci-n-y-Comedia-Completa-720P_HD.mp4?rlkey=vdvcn8eyr68w33lzhk3yi7928&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 72 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">72</span>
+            <img src="https://www.dropbox.com/scl/fi/i2wkdzhaxhfyljqco3cyt/pobre_angelito.png?rlkey=jpsn3hqk4xnf5hnt00kff8cu7&st=awafepaw&dl=1" alt="Mi Pobre Angelito 1990" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Mi Pobre Angelito 1990</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/0x5cntx7c3rmh8tk3hbbp/Mi.Pobre.Angelito.1990.1080P-Dual-Lat.mp4?rlkey=sdjhbginn0qi0sv5knc42bv8m&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 73 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">73</span>
+            <img src="https://www.dropbox.com/scl/fi/1efhibv2e3kozkac1gqun/pobre_angelito_2.png?rlkey=j1kvq7l24ag4l8d1z68d2v52z&st=qv7wvj9u&dl=1" alt="Mi Pobre Angelito 2 (1992)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Mi Pobre Angelito 2 (1992)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/rlghl85j7i5gpq2c7yqvc/Mi.Pobre.Angelito.2.Perdido.En.Nueva.York.1992.1080P-Dual-Lat.mp4?rlkey=4pexs89omr321omoddmb3yagf&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 74 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">74</span>
+            <img src="https://www.dropbox.com/scl/fi/0en4poa1f3xt8x61kzvds/Pain.and.Gain.png?rlkey=4urx3p6vrmsya4dzmk0q2yc98&st=rtxfrahv&dl=1" alt="Pain and Gain 2013" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Pain and Gain 2013</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/48mrbp0uhtwybo3sesbob/Pain.and.Gain.2013.latino-e-ingles-subt.mp4?rlkey=vvqqoil9s223gljr07b307th4&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 75 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">75</span>
+            <img src="https://www.dropbox.com/scl/fi/oepqiwiemr423hwqn3hzw/Papillon.La.Gran.Fuga.png?rlkey=x0nkeo25puwu44fndwaaop5xw&st=mg15jox1&dl=1" alt="Papillon La Gran Fuga 2017" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Papillon La Gran Fuga 2017</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/fojky1lfvu03whfrgbszd/Papillon.La.Gran.Fuga.2017.1080P-Dual-Lat.mp4?rlkey=jpmypll8bnxu0lt5ewxpi71qj&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 76 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">76</span>
+            <img src="https://www.dropbox.com/scl/fi/lw66kj6dul96z724up7fu/planeta_51.png?rlkey=ymcn0cjs7aag2i9fpa97wcg34&st=6s6ugfvv&dl=1" alt="Planeta 51 2009" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Planeta 51 2009</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/bdza3zwur8uscutq5yz2d/Planeta.51.2009.1080P-Lat.mp4?rlkey=1c3tdw9vqe7y32d7fddeoz5f9&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 77 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">77</span>
+            <img src="https://www.dropbox.com/scl/fi/i3isozsmiisudjp2li8m6/prisionero_de_guerra.png?rlkey=1txku3cjeenmpx4zz9nt94rle&st=26f6ktvu&dl=1" alt="Prisionero De Guerra 2025" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Prisionero De Guerra 2025</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/222eq0tju0z9tm0hmg65n/Prisionero.De.Guerra.2025.1080P-Dual-Lat.mp4?rlkey=6b1v0a0aoidmnzj00ozw0j8od&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 78 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">78</span>
+            <img src="https://www.dropbox.com/scl/fi/c4b9wlmkr4br8bicyznfe/vida_salvaje.png?rlkey=fzp074k0b3w519zkoqut78yfe&st=aevvvyft&dl=1" alt="Vida Salvaje 2006" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Vida Salvaje 2006</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/4bugtcnvz8gk23oskd5yi/Vida.Salvaje.2006.1080P-Dual-Lat.mp4?rlkey=vx6gb0d78y5c18x6h284o7g7n&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 79 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">79</span>
+            <img src="https://www.dropbox.com/scl/fi/vzppreplc7qobujohnu9y/ltimo_desafio.png?rlkey=cpce59y3841ep11e8gyt72ejc&st=wj3w8h8c&dl=1" alt="El Último Desafío 2013" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Último Desafío 2013</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/cqbxpxhbxwm3hi4oa1of5/El.-ltimo.desaf-o.2013.1080P-Dual-Lat.mp4?rlkey=tjslthzhqp1yvn0a5ex2tdwmk&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 80 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">80</span>
+            <img src="https://www.dropbox.com/scl/fi/pybltajxljvv1edsr1b4h/Eraser_Elprotector.png?rlkey=ciddotejvd0k1rqexulx0tnnv&st=zzcgxfr5&dl=1" alt="Eraser: El Protector 1996" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Eraser: El Protector 1996</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/tlxkxq2v2s89czaoonbrj/Eraser-Elprotector-.1996.1080P-Dual-Lat.mp4?rlkey=wolr2kvyt28yj4lsl4bb64bj9&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 81 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">81</span>
+            <img src="https://www.dropbox.com/scl/fi/z5xodur9vrccrvqqoy0d7/entrenando_a_papa.png?rlkey=4sf4sgz54gi7okyjsapvi5a0f&st=wneom6ei&dl=1" alt="Entrenando A Papá 2007" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Entrenando A Papá 2007</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/djbm136oif76majdb61v6/Entrenando.A.Papa.2007.1080P-Dual-Lat.mp4?rlkey=7hpp8opc9ze0vg657a3k3y6l8&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 82 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">82</span>
+            <img src="https://www.dropbox.com/scl/fi/8d941typqc34n4jgydz6v/Eliminators.png?rlkey=38bwiwqk74jqdlxjjmii80318&st=x465hnaz&dl=1" alt="Eliminators 2016" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Eliminators 2016</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/trgownbzr3zfvqu40xiyp/Eliminators.2016.1080P-Dual-Lat.mp4?rlkey=fvivwrz8tm6qhvvwqwhvpt49y&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 83 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">83</span>
+            <img src="https://www.dropbox.com/scl/fi/vzppreplc7qobujohnu9y/ltimo_desafio.png?rlkey=cpce59y3841ep11e8gyt72ejc&st=9nxvtazs&dl=1" alt="El Último Desafío 2013 (Alt)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">El Último Desafío 2013 (Alt)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/7ii7vyd6sdid4fwzpilet/El.-ltimo.desaf-o.2013.1080P-Dual-Lat.mp4?rlkey=01zokzzitknogi6jcq3ydl4ns&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 84 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">84</span>
+            <img src="https://www.dropbox.com/scl/fi/9d910sjp0v5ig04ydoao4/Red_Notice_2.png?rlkey=wukhiz57cztrf1rym860kss2h&st=1sitppz0&dl=1" alt="Red Notice 2021" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Red Notice 2021</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/oe7ge79hbfzm04kuak2w4/Red.Notice.2021.1080P-Dual-Lat.mp4?rlkey=rim3u6mxtu449un8b5ss7r7mp&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 85 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">85</span>
+            <img src="https://www.dropbox.com/scl/fi/wlpin5u7saal7iszcw6kt/pueblo_pistolero.png?rlkey=ojybzazslev7zlfx3dujtf0r9&st=imrojlhe&dl=1" alt="Pueblo Chico, Pistola Grande 2014" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Pueblo Chico, Pistola Grande 2014</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/m23ivaoq2n98pxqjy85vx/Pueblochico-pistolagrande.2014.1080P-Dual-Lat.mp4?rlkey=xtaqcua1lrlubiajmiroz0ypi&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 86 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">86</span>
+            <img src="https://www.dropbox.com/scl/fi/cfra5pu7pa2q2fcno93sd/sabotage.png?rlkey=5uf1x6261hpoh3p80bdecmz64&st=hce9sh6t&dl=1" alt="Sabotage 2014" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sabotage 2014</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/9031p2rc67qxmusv3mctu/Sabotage.2014.1080P-Dual-Lat.mp4?rlkey=o7iildx61p09iddlt9rpv9z3d&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 87 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">87</span>
+            <img src="https://www.dropbox.com/scl/fi/bk4krd437nm8wzu1ac8hm/rescate_en_la_altura.png?rlkey=88rw4bwie0pjdrxcw7qy8k3wm&st=jytsdkfl&dl=1" alt="Rescate En Las Alturas 2025" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Rescate En Las Alturas 2025</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/amprxmgcti9w9h2pq4fvj/Rescate.En.Las.Alturas.2025.1080P-Dual-Lat.mp4?rlkey=e12xw0mkqp1yw5r9230efgl4c&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 88 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">88</span>
+            <img src="https://www.dropbox.com/scl/fi/ndvl1dbv3yjwakkymo4cy/si_se-or.png?rlkey=lwf741vcqbwr4yxiymmcdewc3&st=icglyl2o&dl=1" alt="Sí, Señor 2008 (Alt)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sí, Señor 2008 (Alt)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/rkbj12aubnbia81mn8rt4/S-.Se-or.2008.1080P-Dual-Lat.mp4?rlkey=8dpjnhp2ja12cjqx4cfihezv1&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 89 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">89</span>
+            <img src="https://www.dropbox.com/scl/fi/0s3v55vqn5gx59z6aqpmy/cerdos_diamantes.png?rlkey=mzr49obdq1halo9ijtpc6lcz2&st=cm3ggcch&dl=1" alt="Snatch: Cerdos y Diamantes 2000" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Snatch: Cerdos y Diamantes 2000</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/j9m2itj47cuyrnilh5uxs/Snatch.Cerdos.Y.Diamantes.2000.1080P-Dual-Lat.mp4?rlkey=v1yhbtt0cw8c1liq2gy1bg68i&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 90 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">90</span>
+            <img src="https://www.dropbox.com/scl/fi/51ctvpmtlysmr8raxe9ki/Spy_Una_esp-a_despistada.png?rlkey=mfkhf1fhk13bp4is87lub9ccw&st=n8qnzm9u&dl=1" alt="Spy: Una Espía Despistada 2015" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Spy: Una Espía Despistada 2015</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/oepcd2jyx7170n8x3y1iw/Spy.Una.esp-a.despistada.2015.1080P-Dual-Lat.mp4?rlkey=uzr3u3ja5xdyr8udlcil2skd9&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 91 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">91</span>
+            <img src="https://www.dropbox.com/scl/fi/jtpn2vzzdrsjsoj23sahv/Superagente86.png?rlkey=e05osrlxhb2rm6353nfj1v7ri&st=1i6ovbxl&dl=1" alt="Superagente 86 (2008)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Superagente 86 (2008)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/2310yrpdhtjbau8331vf3/Superagente86.2008.1080P-Dual-Lat.mp4?rlkey=ccog316a126qpjde7ewl74pus&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 92 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">92</span>
+            <img src="https://www.dropbox.com/scl/fi/hojtaygb38nbeu6mkq3i5/los_indestructibles-2.png?rlkey=zhlnjmrgpk8f7cow4a4d94nuo&st=2sp7i6vi&dl=1" alt="The Expendables 2 (2012)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">The Expendables 2 (2012)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/246rqelh1nl2hpnrjkrjl/The.Expendables.2.2012.1080P-Dual-Lat.mp4?rlkey=8swz1zlb0yfbvokopvbkw0j3k&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 93 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">93</span>
+            <img src="https://www.dropbox.com/scl/fi/tgbncn94pp19lu1pat82w/los_indestructibles_3.png?rlkey=q663l73owbo6eaj8l8b06acbf&st=6t358j9i&dl=1" alt="The Expendables 3 (2014)" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">The Expendables 3 (2014)</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/00dodfsnjze5dgxvwmz1v/The.Expendables.3.2014.1080P-Dual-Lat.mp4?rlkey=voy63l0opjyl3mseh2g9l3qme&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 94 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">94</span>
+            <img src="https://www.dropbox.com/scl/fi/ouhys7nkxy9p7yioqp4rf/juego_salvaje.png?rlkey=ytlmxdob88kh9o0pxbd3glmu7&st=ydo17ssx&dl=1" alt="Jugada Salvaje 2015" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jugada Salvaje 2015</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/rwr381kv0hrfg7axv8dfw/Jugada.salvaje.2015.1080P-Dual-Lat.mp4?rlkey=5x6qmnvqgblru1ooaoaf3bp8y&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 95 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">95</span>
+            <img src="https://www.dropbox.com/scl/fi/6mygtxa13ct2mfrcumb5l/juego_brutal.png?rlkey=mjrmloesjud96slhqeucq7wx7&st=vowxbm9o&dl=1" alt="Juego Brutal 1986" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Juego Brutal 1986</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/1d6sfasqtut55t387kxph/Juego.Brutal.1986.1080P.Latino.mp4?rlkey=g4fl9xeaznfvzmg5erk81t557&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 96 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">96</span>
+            <img src="https://www.dropbox.com/scl/fi/dux2bj4zqwr69edazofhr/esp-a_por_error.png?rlkey=6sek51jb2k36wc70wee4gfta5&st=207xpyjj&dl=1" alt="Espía Por Error 2016" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Espía Por Error 2016</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vgq3i2oqzd2eh8m78fj68/Esp-a.por.error.2016.1080P-Dual-Lat.mp4?rlkey=yik2cmrhp3o79jfq7mvtsrh7b&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 97 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">97</span>
+            <img src="https://www.dropbox.com/scl/fi/1vsw3ejvcfgjm44vvuz1m/la_muerte_los_junto.png?rlkey=tj4x7fzpfu95vllc3fh4in1v0&st=qkoopo1m&dl=1" alt="Hasta Que La Muerte Los Juntó 2014" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Hasta Que La Muerte Los Juntó 2014</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vf08k2bmsrrk6ybw0l33t/Hasta.que.la.muerte.los.junt-.2014.1080P-Dual-Lat.mp4?rlkey=z3h2guap7lxs9zhlmln0ahjyw&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 98 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">98</span>
+            <img src="https://www.dropbox.com/scl/fi/jt09vrs11b6kao2t6s3xn/H-rcules_nueva_york.png?rlkey=gwhxejgf5h2qzgxwp1yc8uaq5&st=s3recgif&dl=1" alt="Hercules In New York 1969" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Hercules In New York 1969</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/0la2tqxk3vy85fgsrx0ps/Hercules.In.New.York.1969.1080p-Dual-Lat.mp4?rlkey=7oq4wwqpzjqj34md9se27z27c&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 99 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">99</span>
+            <img src="https://www.dropbox.com/scl/fi/fbwsx0na13jrelnevuhm2/H-rcules.png?rlkey=nxtyq48ie4q6mihmcjv9w305t&st=revj8z61&dl=1" alt="Hércules 1080P Latino" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Hércules 1080P Latino</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ecna5gxnm7n4bd3sl1476/H-rcules.1080P.Latino.mp4?rlkey=y4uocgcvs4d44apq6kdp6x8nm&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 100 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">100</span>
+            <img src="https://www.dropbox.com/scl/fi/qycsidcpdgvqq5wo6t5nr/Home.Invasion.png?rlkey=nc9x03h4fci2206qp2zwjgvvp&st=mhb2bqxd&dl=1" alt="Home Invasion 2016" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Home Invasion 2016</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/l5cr5gmrur5slekxml54r/Home.Invasion.2016.1080P-Dual-Lat.mp4?rlkey=c4cofergjmdairjg7zgvvc4bt&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 101 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">101</span>
+            <img src="https://www.dropbox.com/scl/fi/3ewo4anucoaortl4ifvsp/Jarhead_3_The_Siege.png?rlkey=4r9pmudsxyrlvlmo0gqv6hzxd&st=giu4cpy7&dl=1" alt="Jarhead 3: The Siege 2016" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Jarhead 3: The Siege 2016</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/ad9zfujchmzxts4d2fk05/Jarhead.3.The.Siege.2016.1080P-Dual-Lat.mp4?rlkey=h49hosswvuqhntc74guwumk14&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 102 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">102</span>
+            <img src="https://www.dropbox.com/scl/fi/5iy5zruqtlqz9qt053qih/Journey_2_The_Mysterious_Island.png?rlkey=k4qixj9oiksr4w725r2qokdfa&st=t491ril2&dl=1" alt="Journey 2: The Mysterious Island" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Journey 2: The Mysterious Island</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/q5y8aowhy8f2k269cbf50/Journey.2.The.Mysterious.Island.2012.1080p-dual-lat.mp4?rlkey=f723xv9ae8cn4gte2r7dur48l&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 103 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">103</span>
+            <img src="https://www.dropbox.com/scl/fi/ks3nshasscmod134641qi/MONSTRUOS_VS_ALIENS.png?rlkey=p50pvhy8rwh23kmue07ti66q7&st=md8n8x94&dl=1" alt="Monstruos vs Aliens" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Monstruos vs Aliens</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vilyw76bzfk53x0401ktj/Monstruos-vs-aliens-1080p-DUAL-6.83-GB.mp4?rlkey=s2czuizoc2narkxdnp32tpljm&st=&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+
+    <!-- 104 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">104</span>
+            <img src="https://www.dropbox.com/scl/fi/s21uqco79lgm8m0mbpex6/Sonic_3.png?rlkey=h99z3btzr24nao51m08wq2gy3&st=jbrcbr5p&dl=1" alt="Sonic 3 La Película 4K" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">Sonic 3 La Película 4K</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/y3nechrc8tgl9709ar7yu/Sonic-3-La-Pel-cula-60fps-DUAL-7.76-GB.mp4?rlkey=ja7lhu51unalg0y1k6hj42o0u&st=miuf646y&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+    
+        <!-- 105 -->
+        <div class="movie-card">
+            <div class="movie-img-container">
+                <span class="movie-number">105</span></span>
+            <img src="https://www.dropbox.com/scl/fi/syh52rjjekpszwjbly67s/barreras.png?rlkey=8b4uiy8o38b777gx7rtpkwasa&st=d6murtfu&dl=1" alt="barreras" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">barreras</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/zlpg1j1g741ky0vr6ssn0/Barreras.2016.1080P-Dual-Lat.mp4?rlkey=6smkz6zn4ojsctjb49h8xajdd&st=t6y2vqtd&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 106 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">106</span>
+        <img src="https://www.dropbox.com/scl/fi/huaxa4kz5isbfmfhxuilq/Malcolm_X_1992.png?rlkey=pdku9an8gc513lapkay44xjkl&st=ln2btoz9&dl=1" alt="Malcolm X" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Malcolm X</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/bs7u8ezwcri5jzvt4erum/Malcolm.X.1992.1080P-Dual-Lat.mp4?rlkey=5up73h31910kxcd2mnmhnkkzb&st=cbc6w4os&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 107 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">107</span>
+        <img src="https://www.dropbox.com/scl/fi/98rh5dvbclhqagp8gzlrz/duelo_de_titanis.png?rlkey=xotl8k27j3g48ex3dups5wj6v&st=qke4uk5e&dl=1" alt="Duelo de Titanes" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Duelo de Titanes</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/0egbiqmstfj6vromp04zv/Duelo.De.Titanes.2000.1080P-Dual-Lat.mp4?rlkey=repg9wvg3icquehgimxyq6c55&st=xqtpwbvi&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 108 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">108</span>
+        <img src="https://www.dropbox.com/scl/fi/oz70lcp3cbheigxgu3qxa/justiciero.png?rlkey=wquw4bats6ais9wq2ckknf2rz&st=yepkf69v&dl=1" alt="El Justiciero: Capítulo Final" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">El Justiciero: Capítulo Final</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/alzsgxjhbtppp30ztwejc/El.Justiciero.Cap-tulo.Final.2023.1080P-Dual-Lat.mp4?rlkey=aeanup6u0afq42kwa7mo22z5v&st=zd86jy5h&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 109 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">109</span>
+        <img src="https://www.dropbox.com/scl/fi/1t01pt3r20b09ivc1qch1/justiciero_2.png?rlkey=hediyz5kysh1wcyblab61sc69&st=0bu6x2hy&dl=1" alt="El Justiciero 2" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">El Justiciero 2</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/00hp0oqcte2z1ty22e2bc/El.Justiciero.2.2018.1080P-Dual-Lat.mp4?rlkey=1dtkk3i5dkdi8drvp7p0632dz&st=x54zvg85&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 110 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">110</span>
+        <img src="https://www.dropbox.com/scl/fi/hh528wy48lpwb9lo1fk0z/hombre_en_llamas.png?rlkey=rn9fsi7xygm4qetjwiykoksky&st=qn41ah0q&dl=1" alt="Hombre en Llamas" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Hombre en Llamas</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/r2if1d7jam8pctc9lbyt1/Hombreenllamas.2004.1080P-Dual-Lat.mp4?rlkey=274xx9q70i4ndgeh4dozp03qd&st=8xnd2fto&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 111 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">111</span>
+        <img src="https://www.dropbox.com/scl/fi/cmoe083r1oot7hp087k2g/The_little_things.png?rlkey=uj817qhpee5jz94ok3m9k8mg3&st=zdl1mccy&dl=1" alt="The Little Things" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">The Little Things</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/su7xd3w70k2ie1rq1j4zw/The.little.things.2021.1080P-Dual-Lat.mp4?rlkey=dmgexnkr3epoxys5pdv9dk90c&st=0v8rdrnj&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 112 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">112</span>
+        <img src="https://www.dropbox.com/scl/fi/pfdafa35sto7qettp4h1i/el_camino_de_hill.png?rlkey=i21c3hf0a8fipkwe1d6d28ccd&st=ecx1rkmi&dl=1" alt="El Camino de Hill" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">El Camino de Hill</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/xouax5fmwffhnzjsguhhs/El-Camino-De-Hill-1080p-DUAL-4.23-GB.mkv?rlkey=ku7t0e6q9o5umr4va5p6m4tvf&st=13n9gezk&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 113 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">113</span>
+        <img src="https://www.dropbox.com/scl/fi/klcyav0z7q1fbqwg6ktis/comando.png?rlkey=5k6vwdu60pnj12odk7s6e4oyf&st=gd5l6pmm&dl=1" alt="Comando" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Comando</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/5utth62c6xez5gtvbe7vx/Comando.1985.1080P-Dual-Lat.mp4?rlkey=av1e7q5y3pqoegnhxm6l0b10e&st=6vyxe7ij&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 114 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">114</span>
+        <img src="https://www.dropbox.com/scl/fi/wpix62uq0uc2yul0rnp42/cambiando_el_pasado.png?rlkey=e5i8nqsepb14nto4bonk4y6mx&st=u2qh1p33&dl=1" alt="Déjà Vu: Cambiando el Pasado" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Déjà Vu: Cambiando el Pasado</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/94berw3o5ouezrncn9kci/D-ja.Vu.Cambiando.El.Pasado.2006.1080P-Dual-Lat.mp4?rlkey=42trm1j3crjx2v359ucjsa7mg&st=2te4jllp&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 115 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">115</span>
+        <img src="https://www.dropbox.com/scl/fi/u3lp08ylps3px4hkhz24z/el_coleccionista.png?rlkey=h440h9x4fjfhln90g2yg5xz94&st=umc6sqsi&dl=1" alt="El Coleccionista de Huesos" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">El Coleccionista de Huesos</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/v95rd80macw4hakksdm1f/El.Coleccionista.De.Huesos.1999.1080P-Dual-Lat.mp4?rlkey=ly3ubji2sb4p0pkfribgo3o5n&st=nhvuj72l&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 116 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">116</span>
+        <img src="https://www.dropbox.com/scl/fi/9hin3a8jd5y8tjx5bqsjd/el_regalo_prometido.png?rlkey=3t18dpyu2rdwne2zqpba5cboc&st=4s7rad91&dl=1" alt="El Regalo Prometido" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">El Regalo Prometido</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/az3n8oj3m2deetivyff5x/El.Regalo.Prometido.1996.1080P-Dual-Lat.mp4?rlkey=e1ld8xfiogj9zhng9m41tyjdv&st=gh7qlxzm&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 117 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">117</span>
+        <img src="https://www.dropbox.com/scl/fi/ymt56xs5x83fx4p2vk0ig/Family_switch.png?rlkey=0rezyuj30hgqpuz5g8v7g366q&st=3dftghfk&dl=1" alt="Family Switch" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Family Switch</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/2j6w4dpvej9o3iwmfws3w/Family.switch.2023.1080P-Dual-Lat.mp4?rlkey=2b6f00s6icww44bdgg4ybpanj&st=xpobwbou&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 118 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">118</span>
+        <img src="https://www.dropbox.com/scl/fi/6hepdtliu40iqhhp5a8wl/gemelos.png?rlkey=7t3ey1sb6m0nhqocej1wtg6qi&st=ykz6iadv&dl=1" alt="Gemelos" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Gemelos</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/y5jbz416obe2r4w2ucted/Gemelos.1988.1080P-Dual-Lat.mp4?rlkey=z4ynljjh98e9u6bohr3zgad4v&st=919pggdb&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+<!-- 119 -->
+<div class="movie-card">
+    <div class="movie-img-container">
+        <span class="movie-number">119 </span>
+        <img src="https://www.dropbox.com/scl/fi/tlz0ke9nmdueru5i0olnx/espia_y_medio.png?rlkey=6eeqbuj6bj55q31bvturma12r&st=5jb7kc37&dl=1" alt="Un Espía y Medio" loading="lazy">
+    </div>
+    <div class="movie-content">
+        <h3 class="movie-title">Un Espía y Medio</h3>
+        <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/v39ja9b6vyfnpgvmkwqnj/Un.Espia.Y.Medio.2016.1080P-Dual-Lat.mp4?rlkey=of1bl7dq1xprhkem3un2forph&st=a1qhnqh4&dl=1')">
+            <i class="fa-solid fa-play"></i> Reproducir
+        </button>
+    </div>
+</div>
+
+       <!-- 120 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">120</span></span>
+            <img src="https://www.dropbox.com/scl/fi/rciat1ccffmfhiqa4siyj/escuadr-n_de_la_muerte.png?rlkey=hhe2fm44f7n2t5r8kwmgv595s&st=c6maetk3&dl=1" alt="Escuadrón de la muerte" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">escuadron de la muerte</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/w5av1dtz05c1ehak41839/El-escuadr-n-de-la-muerte-1080p-DUALC-1.40-GB.mp4?rlkey=f39dca2mecl5ifubv6nhvdgvo&st=afn3nkot&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+    
+    
+        <!-- 121 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">121</span>
+            <img src="https://www.dropbox.com/scl/fi/k32scp3eya6h04jxw2iin/hacia-_la_libertad.png?rlkey=mo2f4ryxax1jf7kgic7i6vj7o&st=87pkbyef&dl=1" alt="Hacia la libertad" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">hacia-_la_libertad</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/vecedum843bmlxglgwa3m/Hacia-la-libertad-1080p-TRIAL-5.02-GB.mkv?rlkey=9fjeqdxynuvpinkikwubuath1&st=piwsxw2n&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>
+    
+         <!-- 122 -->
+    <div class="movie-card">
+        <div class="movie-img-container">
+            <span class="movie-number">122</span>
+            <img src="https://www.dropbox.com/scl/fi/kl1x6zu51q952dqmwfd9u/rescate_imposible.png?rlkey=qik19zh14752960701jl14dxu&st=lc0bdsss&dl=1" alt="Rescate imposible" loading="lazy">
+        </div>
+        <div class="movie-content">
+            <h3 class="movie-title">rescate_imposible</h3>
+            <button class="movie-btn" onclick="reproducir('https://www.dropbox.com/scl/fi/dgyz9q5gszbwgcsk1jltj/Rescate-imposible-1080p-DUALC-5.09-GB.mkv?rlkey=8dcx08q75zlua6j9di47otsnv&st=3gdu2u4e&dl=1')">
+                <i class="fa-solid fa-play"></i> Reproducir
+            </button>
+        </div>
+    </div>   
+    
+<!-- 5. Reproductor emergente -->
+<div id="player">
+    <button onclick="cerrarPlayer()">✕</button>
+    <video id="videoPlayer" controls playsinline controlsList="nodownload"></video>
+</div>
+
+<script>
+/* 3. Corregir la función reproducir() */
+function reproducir(url){
+    const player = document.getElementById("player");
+    const video = document.getElementById("videoPlayer");
+
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+    video.src = url;
+    player.style.display = "flex";
+    video.load();
+
+    video.play().catch(function(error){
+        alert("No fue posible reproducir esta película.");
+        console.log(error);
+    });
+}
+
+/* 4. Agregar cerrar reproductor */
+function cerrarPlayer(){
+    const player = document.getElementById("player");
+    const video = document.getElementById("videoPlayer");
+
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+    player.style.display = "none";
+}
+</script>
+
+</body>
+</html>
