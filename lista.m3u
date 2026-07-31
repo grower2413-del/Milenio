@@ -1296,12 +1296,68 @@ https://www.dropbox.com/scl/fi/kchi5sp0qwtye2mc2scy5/GOL_-3.mp4?rlkey=j9xrgrjvl7
 #EXTINF:-1 tvg-id="" tvg-name="La Montaña Embrujada (2009)" tvg-logo="https://www.dropbox.com/scl/fi/8aiyp0hkzaq40fix3h1az/monta-a-embrujada.png?rlkey=34iteami0l2yuqm69ur5e4r1g&st=v24xtil3&dl=1" group-title="Películas" content-type="movie",La Montaña Embrujada (2009)
 https://www.dropbox.com/scl/fi/ssuka43d0uiooe3jh6cw0/La.Monta-a.Embrujada.2009.1080P-Dual-Lat.mp4?rlkey=f77mdvxtz0dlvd2muhhhqc0pg&st=e3x147zl&dl=1
 
-#EXT-X-SESSION-DATA:DATA-ID="com.xui.1_5_13"
-#EXTINF:-1 xui-id="198146" tvg-name="Contraataque (2025)" tvg-logo="https://lokuratv.xyz:443/images/liyGeNoTNWOyJFg1rMveIFzNdUqKNhRW4fuiRLLBbq3N12CqlpJy_XSBiue6x1Ct7wauUCztlPwpMvYYq86FhpHVNG6bFmI3HS-SXYrbNNI.jpg" group-title="♦️ESTRENOS 2025♦️",Contraataque (2025)
-https://aioplus.es:443/play/cqfFv0o1VtGURoVR592cXDeFpRhwgeQgQ7gdLSOnAmH2gSdzmOyQj57TihhRn7bV#.mp4
-#EXTINF:-1 xui-id="222528" tvg-name="Acapulco S01E01" tvg-logo="https://lokuratv.xyz:443/images/yN-aXoA2R1-eEooj5VFqLzt_D9e8Pptt1ebYayAjAtS7Ib3tzFfY5ka7esa1nQwzUYfxmTNe23gwH3MYdb9Iv419L_Rg4dwWbjBUsLQygt0.jpg" group-title="♦️APPLE TV♦️",Acapulco S01E01
-https://aioplus.es:443/play/otjkI8rSgp4nhLp13k2oBMDiQZbiPqItfOYNCECoAHGP2ZMCdUNH34m42FmiIqzt#.mkv
-#EXTINF:-1 xui-id="222529" tvg-name="Acapulco S01E02" tvg-logo="https://lokuratv.xyz:443/images/yN-aXoA2R1-eEooj5VFqLzt_D9e8Pptt1ebYayAjAtT16xZ9aUV2JYr6KgCVuAe5EQmmmiJRcDa807RsM33efcGsXrsxHi7SjWCZZDNvQUU.jpg" group-title="♦️APPLE TV♦️",Acapulco S01E02
-https://aioplus.es:443/play/otjkI8rSgp4nhLp13k2oBDhnjNF44KJiU0wYDIfvPqp8jRVv0iYI76aTJg_xBz43#.mkv
-#EXTINF:-1 xui-id="222530" tvg-name="Acapulco S01E03" tvg-logo="https://lokuratv.xyz:443/images/yN-aXoA2R1-eEooj5VFqLzt_D9e8Pptt1ebYayAjAtSSp4dYtMTp4aw8s3v5IKNuwQw74P4kdnLizGc8wvm7cQ.jpg" group-title="♦️APPLE TV♦️",Acapulco S01E03
-https://aioplus.es:443/play/otjkI8rSgp4nhLp13k2oBGgKn5EYkbm6dXkscub8X43-yobn4Ll1FEyTCUQavqnc#.mkv
+#EXTM3U name="Milenio4K Series"
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E01" group-title="Series",Avatar: La Leyenda de Aang - T1E01
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/0fkbimm559z98g8ugvder/Avatar-La-Leyenda-De-Aang-1080p-S01E01.mkv?rlkey=z3l4mavlsq58stevt8ccs9j99&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E02" group-title="Series",Avatar: La Leyenda de Aang - T1E02
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/o37hcs4lhoteayk8dlbyv/Avatar-La-Leyenda-De-Aang-1080p-S01E02.mkv?rlkey=2kn16c52b63wgyrizo0e72ej9&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E03" group-title="Series",Avatar: La Leyenda de Aang - T1E03
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/1oxclpw3j6zgcvb35amb3/Avatar-La-Leyenda-De-Aang-1080p-S01E03.mkv?rlkey=69fmkpf1gfemxvutw3e8i3pjb&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E04" group-title="Series",Avatar: La Leyenda de Aang - T1E04
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/i8b9unt9ku1e190881y5i/Avatar-La-Leyenda-De-Aang-1080p-S01E04.mkv?rlkey=omnfm1l3r9kbe3i57ys5exktd&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E05" group-title="Series",Avatar: La Leyenda de Aang - T1E05
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/xykm4ueeu6k8jvnbwulea/Avatar-La-Leyenda-De-Aang-1080p-S01E05.mkv?rlkey=3a45td8tx0c851abjnudhxy12&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E06" group-title="Series",Avatar: La Leyenda de Aang - T1E06
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/h9ykvodqi2j3ynqo87l9e/Avatar-La-Leyenda-De-Aang-1080p-S01E06.mkv?rlkey=i0lgbm3pnok67bm8vaz696des&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E07" group-title="Series",Avatar: La Leyenda de Aang - T1E07
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/na0x7i8fvr59j115sztkx/Avatar-La-Leyenda-De-Aang-1080p-S01E07.mkv?rlkey=59uym3sl74b9aopuocialv8qk&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S01E08" group-title="Series",Avatar: La Leyenda de Aang - T1E08
+#EXTIMG:https://www.dropbox.com/scl/fi/vqbfjqa8iu7uzd005x8jq/avatar-temporada-01.png?rlkey=eskgey8pza5ihyfst0q1cs5sz&raw=1
+https://www.dropbox.com/scl/fi/kmf3peqy8ab6iudw9swlv/Avatar-La-Leyenda-De-Aang-1080p-S01E08.mkv?rlkey=1m5ardjyfeu67vbpu833m0e4a&raw=1
+
+#==========================================
+# AVATAR: LA LEYENDA DE AANG - TEMPORADA 2
+#==========================================
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E01" group-title="Series",Avatar: La Leyenda de Aang - T2E01
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/b661cdy4npbfnfqqowtrl/Avatar-La-leyenda-de-Aang-S02E01.mkv?rlkey=xmm6j08lx7lwd2t6ail9tnm3q&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E02" group-title="Series",Avatar: La Leyenda de Aang - T2E02
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/i5hfgt9if61jmq594dbx6/Avatar-La-leyenda-de-Aang-S02E02.mkv?rlkey=cduj52oppl1wvhs8zpb7ca8x0&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E03" group-title="Series",Avatar: La Leyenda de Aang - T2E03
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/ml8uc9h9pp4azrwuliypm/Avatar-La-leyenda-de-Aang-S02E03.mkv?rlkey=itvk527loogiuxpewttgxe1sx&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E04" group-title="Series",Avatar: La Leyenda de Aang - T2E04
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/iotptdg9relljhizhx9vu/Avatar-La-leyenda-de-Aang-S02E04.mkv?rlkey=a67xaf0zl2sqlilql0hx09uot&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E05" group-title="Series",Avatar: La Leyenda de Aang - T2E05
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/zklx5yj1ame157d9x0pl4/Avatar-La-leyenda-de-Aang-S02E05.mkv?rlkey=ndtyjyed9mycrlxknnkf788xy&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E06" group-title="Series",Avatar: La Leyenda de Aang - T2E06
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/tmj1l802dkyfphbooe4re/Avatar-La-leyenda-de-Aang-S02E06.mkv?rlkey=esgbqesfqt8cofvcf12fjnek1&raw=1
+
+#EXTINF:-1 tvg-name="Avatar: La Leyenda de Aang S02E07" group-title="Series",Avatar: La Leyenda de Aang - T2E07
+#EXTIMG:https://www.dropbox.com/scl/fi/5w67lxt6sdk2902lz8bws/avatar-temporada-02.png?rlkey=b9v3wa2bfaizyymnt4uk3djjf&raw=1
+https://www.dropbox.com/scl/fi/4g8n1nohxx3hc6gfyt4m0/Avatar-La-leyenda-de-Aang-S02E07.mkv?rlkey=fnspqquyeu76go03qm88c4y4r&raw=1
