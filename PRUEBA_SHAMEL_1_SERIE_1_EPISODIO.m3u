@@ -1,4 +1,44 @@
-#EXTM3U
+#EXTMFU
+
+# ==========================================
+# SECCIÓN: SERIES (Totoy TV)
+# ==========================================
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E01 - Cumpleaños Sorpresa
+https://dl.dropboxusercontent.com/scl/fi/cv7irfmyqsjwgclnm3hq5/Cuentos-Infantiles-Totoy-_-La-historia-del-Cumplea-os-Sorpresa-Jos-Totoy___-En-Espa-ol-720P_HD.mp4?rlkey=2empx5jwsvjzv73p0tegu5i03&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E02 - La Torre de los Helados
+https://dl.dropboxusercontent.com/scl/fi/wpgjjbf7iy0w4dvuaghws/Cuentos-Infantiles-Totoy-_-Jos-Totoy-y-La-Historia-de-la-Torre-de-los-Helados__-En-Espa-ol-720P_HD.mp4?rlkey=5jpx4quqbrm59o5wh35gjbz7n&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E03 - Cuidar a Kim
+https://dl.dropboxusercontent.com/scl/fi/b5m29spjpc2r307zana02/Cuentos-Infantiles-Totoy-_-Jos-Totoy-y-la-Historia-de-Cuidar-a-Kim-720P_HD.mp4?rlkey=372zwkrsvyezxx2rqpjz5v0d4&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E04 - Lluvia de Estrellas
+https://dl.dropboxusercontent.com/scl/fi/puqcg5dbh79t3zgawxuuu/Cuentos-Infantiles-Totoy-_-Jos-Totoy-Viendo-la-Lluvia-De-Estrellas-Fugaces___-En-Espa-ol-720P_HD.mp4?rlkey=5ucyop769i516yv1niypewp70&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E05 - Paletas Heladas
+https://dl.dropboxusercontent.com/scl/fi/lhlla9xm7j6kn380itipk/Cuentos-Infantiles-Totoy-_-Jos-Totoy-Qu-date-Congelado-haciendo-Paletas-Heladas_-En-Espa-ol-720P_HD-_1.mp4?rlkey=lcjczx2nu4wse9xpsf5ilak9s&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E06 - Máquina de Caramelo
+https://dl.dropboxusercontent.com/scl/fi/4v2yp8g4wce4gf4501m8u/Cuentos-Infantiles-Totoy-_-Jos-Totoy-M-quina-de-Fruta-de-Caramelo___-En-Espa-ol-720P_HD.mp4?rlkey=m4hhdmngw9hvlkqm3hpo7fswf&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E07 - Pizza de Pepperoni
+https://dl.dropboxusercontent.com/scl/fi/z8inv2qwqfu0wiikxvwxm/Cuentos-Infantiles-Totoy-_-Jos-Totoy-Historia-de-Pizza-de-Casi-Pepperoni___-En-Espa-ol-720P_HD.mp4?rlkey=76rf78wp0zj3doi5ssqi2jknr&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E08 - Gelatina de Conejo
+https://dl.dropboxusercontent.com/scl/fi/hqthawdacp3ni70udlogk/Cuentos-Infantiles-Totoy-_-Jos-Totoy-Gelatina-De-Conejo___-En-Espa-ol-Muy-divertido-_-720P_HD.mp4?rlkey=tzd9pu451xrptnf1kdabykxph&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E09 - Nube Enferma
+https://dl.dropboxusercontent.com/scl/fi/2lwfpi62tqyhpw80cnxvs/Cuentos-Infantiles-Totoy-_-Jos-Totoy-En-Nube-Enferma-En-El-D-a-de-Lluvia___-En-Espa-ol-720P_HD.mp4?rlkey=idkisk9zvuspvcy3vy3kc8o8j&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E10 - Burbuja de Jabón
+https://dl.dropboxusercontent.com/scl/fi/7oprat5gwa45denqfsu0m/Cuentos-Infantiles-Totoy-_-Jos-Totoy-Burbuja-De-Jab-n___-En-Espa-ol-Muy-divertido-_-720P_HD.mp4?rlkey=3e43cq7hrch8wmm6pn97se0ji&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E11 - Especial: 25 Minutos
+https://dl.dropboxusercontent.com/scl/fi/461h942260ycy5zexr3wu/Cuentos-Infantiles-Totoy-_-25-Minutos-de-Historias-de-Jos-Totoy___-En-Espa-ol-Completo-720P_HD.mp4?rlkey=23i2cam9xf4navbycuat5h9s1&dl=1
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.flaticon.com/512/4335/4335010.png" group-title="SERIES",Totoy S01 E12 - Jos Comelón (LON LON)
+https://dl.dropboxusercontent.com/scl/fi/8p2j5r12aaxn8sqm895vv/Canciones-Infantiles-Totoy-_-Jos-Comelon-LON-LON___-Muy-Divertido___-En-espa-ol-720P_60FPS.mp4?rlkey=8pysasq73idba1dwl3dmwtnxw&dl=1
 #EXTINF:-1 group-title="Series",Avatar La Leyenda De Aang S01E01
 https://www.dropbox.com/scl/fi/0fkbimm559z98g8ugvder/Avatar-La-Leyenda-De-Aang-1080p-S01E01.mkv?rlkey=z3l4mavlsq58stevt8ccs9j99&st=2t6my7np&dl=1
 #EXTINF:-1 group-title="Series",Avatar La Leyenda De Aang S01E02
